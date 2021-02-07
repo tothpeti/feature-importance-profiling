@@ -27,7 +27,10 @@ class FeatureImportanceAccessor:
     def fi_logistic_regression(cls, x_train: Any, y_train: Any) -> Any:
         model = LogisticRegression()
         model.fit(x_train, y_train)
+        return model.coef_[0]
 
     @classmethod
     def fi_extra_trees(cls, x_train: Any, y_train: Any) -> Any:
-        pass
+        model = ExtraTreesClassifier()
+        model.fit(x_train, y_train)
+        return model.feature_importances_
