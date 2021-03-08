@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AlgoInitService} from "../service/algo-init.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-algo-init-list',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./algo-init-list.component.css']
 })
 export class AlgoInitListComponent implements OnInit {
-
-  constructor() { }
+  availableAlgoList: string[];
+  constructor(private algoInitService: AlgoInitService) { }
 
   ngOnInit(): void {
+    this.availableAlgoList = this.algoInitService.getAlgorithmList();
+  }
+
+  onSelectAlgo(index: number): void {
+    console.log(index);
+    this.algoInitService.selectedAlgorithm.next(index);
   }
 
 }

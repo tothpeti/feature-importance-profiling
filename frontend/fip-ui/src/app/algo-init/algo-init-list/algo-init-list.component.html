@@ -1,1 +1,8 @@
-<p>algo-init-list works!</p>
+<div>
+  <ul>
+    <li *ngFor="let algo of availableAlgoList; let i = index"
+        (click)="onSelectAlgo(i)">
+      {{ algo }}
+    </li>
+  </ul>
+</div>
