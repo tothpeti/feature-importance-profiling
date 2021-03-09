@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AlgoInitService} from '../service/algo-init.service';
 import {Subscription} from 'rxjs';
-import {IAlgoParameterModel} from "../../shared/model/algo-parameter.model";
+import {IAlgorithm} from "../../shared/model/algo-interface.model";
 
 @Component({
   selector: 'app-algo-init-edit',
@@ -10,7 +10,7 @@ import {IAlgoParameterModel} from "../../shared/model/algo-parameter.model";
 })
 export class AlgoInitEditComponent implements OnInit, OnDestroy {
 
-  selectedAlgo: IAlgoParameterModel;
+  selectedAlgo: IAlgorithm;
   selectedAlgoSubscription: Subscription;
 
   constructor(private algoInitService: AlgoInitService) { }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AlgoInitService} from "../service/algo-init.service";
-import {Subscription} from "rxjs";
+import {AlgoInitService} from '../service/algo-init.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-algo-init-list',

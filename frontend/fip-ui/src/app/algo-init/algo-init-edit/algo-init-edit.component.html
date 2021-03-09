@@ -2,11 +2,4 @@
 <p>algo-init-edit works!</p>
 <div>
   <h1>Selected Algo {{ selectedAlgo.algoName }}</h1>
-  <div *ngIf="selectedAlgo.parameters; else NoParameters">
-    <h3>Parameters: </h3>
-    <p>{{selectedAlgo.parameters}}</p>
-  </div>
-  <ng-template #NoParameters>
-    <p>There is no available parameters</p>
-  </ng-template>
 </div>

@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
-import {IAlgoParameterModel} from '../../shared/model/algo-parameter.model';
+import {IAlgorithm} from '../../shared/model/algo-interface.model';
 import {Subject} from 'rxjs';
+import {RandomForestModel} from "../../shared/model/random-forest.model";
+import {MutualInformationModel} from "../../shared/model/mutual-information.model";
+import {ExtraTreesModel} from "../../shared/model/extra-trees.model";
+import {LinearSvcModel} from "../../shared/model/linear-svc.model";
+import {XgboostModel} from "../../shared/model/xgboost.model";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +22,16 @@ export class AlgoInitService {
     'MutualInformation'
   ];
 
-  initializedAlgoList: IAlgoParameterModel[] = [
+  initializedAlgoList: IAlgorithm[] = [
+    new RandomForestModel(),
+    new ExtraTreesModel(),
+    new LinearSvcModel(),
+    new XgboostModel(),
+    new MutualInformationModel()
+  ];
+
+  /*
+  initializedAlgoList: IAlgorithm[] = [
     { algoName: 'RandomForestClassifier',
       parameters: {
         nEstimators: 110,
@@ -63,6 +77,7 @@ export class AlgoInitService {
       algoName: 'MutualInformation'
     }
   ];
+  */
 
   constructor() { }
 
@@ -70,11 +85,11 @@ export class AlgoInitService {
     return this.algorithmList.slice();
   }
 
-  getAlgorithmById(index: number): IAlgoParameterModel {
+  getAlgorithmById(index: number): IAlgorithm {
     return this.initializedAlgoList[index];
   }
 
-  updateAlgorithm(index: number, updatedAlgo: IAlgoParameterModel): void {
+  updateAlgorithm(index: number, updatedAlgo: IAlgorithm): void {
     this.initializedAlgoList[index] = updatedAlgo;
   }
 
