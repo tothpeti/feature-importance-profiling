@@ -17,7 +17,7 @@ export class AlgoInitListComponent implements OnInit {
 
   onSelectAlgo(index: number): void {
     console.log(index);
-    this.algoInitService.selectedAlgorithm.next(index);
+    this.algoInitService.selectedAlgorithmIdx$.next(index);
   }
 
 }
