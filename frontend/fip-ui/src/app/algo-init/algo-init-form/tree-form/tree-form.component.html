@@ -1,1 +1,36 @@
-<p>tree-form works!</p>
+<form [formGroup]="algorithmForm" >
+  <div class="form-inline">
+    <div class="form-group">
+      <label for="nEstimators">n_estimators</label>
+      <input type="number" id="nEstimators" class="form-control mx-sm-3" formControlName="nEstimators"
+        aria-describedby="nEstimatorsHelpLine">
+      <small id="nEstimatorsHelpLine" class="text-muted">
+        Must be greater than 1.
+      </small>
+    </div>
+  </div>
+  <div class="form-inline">
+    <div class="form-group">
+      <label for="maxDepth">max_depth</label>
+      <input type="number" id="maxDepth" class="form-control mx-sm-3" formControlName="maxDepth"
+             aria-describedby="maxDepthHelpLine">
+      <small id="maxDepthHelpLine" class="text-muted">
+        ASd
+      </small>
+    </div>
+  </div>
+  <div class="form-inline">
+    <div class="form-group">
+      <label for="maxDepth">max_depth</label>
+      <input type="number" id="maxDepth" class="form-control mx-sm-3" formControlName="maxDepth"
+             aria-describedby="maxDepthHelpLine">
+      <small id="maxDepthHelpLine" class="text-muted">
+        ASd
+      </small>
+    </div>
+  </div>
+  <div class="row">
+    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="button" class="btn btn-danger">Reset</button>
+  </div>
+</form>

@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {ReactiveFormsModule} from '@angular/forms';
+
 import { AlgoInitComponent } from './algo-init/algo-init.component';
 import { AlgoInitListComponent } from './algo-init/algo-init-list/algo-init-list.component';
 import { AlgoInitEditComponent } from './algo-init/algo-init-edit/algo-init-edit.component';
@@ -29,7 +31,8 @@ import { XgboostFormComponent } from './algo-init/algo-init-form/xgboost-form/xg
   ],
     imports: [
       BrowserModule,
-      AppRoutingModule
+      AppRoutingModule,
+      ReactiveFormsModule
 
     ],
   providers: [],
