@@ -1,8 +1,19 @@
-<div>
-  <ul>
-    <li *ngFor="let algo of availableAlgoList; let i = index"
-        (click)="onSelectAlgo(i)">
-      {{ algo }}
-    </li>
-  </ul>
+<div class="card">
+  <div class="card-header">
+    Available Algorithms
+  </div>
+  <div class="card-body">
+    <div class="list-group">
+      <button type="button"
+              class="list-group-item"
+              *ngFor="let algo of availableAlgoList; let i = index"
+              (click)="onSelected(i)"
+              style="cursor: pointer;"
+              [ngClass]="{'active': selectedId  === i}"
+      >
+        {{ algo }}
+      </button>
+    </div>
+  </div>
 </div>
+

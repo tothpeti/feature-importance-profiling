@@ -9,14 +9,17 @@ import {Subscription} from 'rxjs';
 })
 export class AlgoInitListComponent implements OnInit {
   availableAlgoList: string[];
+  selectedId: number;
+
   constructor(private algoInitService: AlgoInitService) { }
 
   ngOnInit(): void {
     this.availableAlgoList = this.algoInitService.getAlgorithmList();
   }
 
-  onSelectAlgo(index: number): void {
+  onSelected(index: number): void {
     console.log(index);
+    this.selectedId = index;
     this.algoInitService.selectedAlgorithmIdx$.next(index);
   }
 

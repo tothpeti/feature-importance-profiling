@@ -1,5 +1,11 @@
-<br>
-<p>algo-init-edit works!</p>
-<div>
-  <h1>Selected Algo {{ selectedAlgo.algoName }}</h1>
+<div class="card">
+  <div class="card-header">
+    Parameters
+  </div>
+  <div class="card-body">
+    <h1 *ngIf="selectedAlgo; else NoSelected">Selected Algo {{ selectedAlgo.algoName }}</h1>
+    <ng-template #NoSelected>
+      <h2>Choose an algorithm</h2>
+    </ng-template>
+  </div>
 </div>

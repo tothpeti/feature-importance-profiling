@@ -22,7 +22,7 @@ export class AlgoInitService {
     'MutualInformation'
   ];
 
-  initializedAlgoList: IAlgorithm[] = [
+  defaultAlgoList: IAlgorithm[] = [
     new RandomForestModel(),
     new ExtraTreesModel(),
     new LinearSvcModel(),
@@ -30,54 +30,7 @@ export class AlgoInitService {
     new MutualInformationModel()
   ];
 
-  /*
-  initializedAlgoList: IAlgorithm[] = [
-    { algoName: 'RandomForestClassifier',
-      parameters: {
-        nEstimators: 110,
-        criterion: 'gini',
-        maxDepth: 2,
-        minSamplesSplit: 2,
-        minSamplesLeaf: 1,
-        maxFeatures: 'auto'
-      }
-    },
-    {
-      algoName: 'ExtraTreesClassifier',
-      parameters: {
-        nEstimators: 100,
-        criterion: 'gini',
-        maxDepth: 1,
-        minSamplesSplit: 2,
-        minSamplesLeaf: 1,
-        maxFeatures: 'sqrt'
-      }
-    },
-    {
-      algoName: 'LinearSVC',
-      parameters: {
-        penalty: 'l1',
-        tol: 0.0001,
-        cPenalty: 1.0
-      }
-    },
-    {
-      algoName: 'XGBoostClassifier',
-      parameters: {
-        eta: 0.3,
-        minChildWeight: 1,
-        maxDepth: 6,
-        gamma: 0,
-        subsample: 1,
-        colsampleByTree: 0.5,
-        alpha: 0
-      }
-    },
-    {
-      algoName: 'MutualInformation'
-    }
-  ];
-  */
+  initializedAlgoList: IAlgorithm[] = [];
 
   constructor() { }
 
@@ -86,14 +39,14 @@ export class AlgoInitService {
   }
 
   getAlgorithmById(index: number): IAlgorithm {
-    return this.initializedAlgoList[index];
+    return this.defaultAlgoList[index];
   }
 
   updateAlgorithm(index: number, updatedAlgo: IAlgorithm): void {
-    this.initializedAlgoList[index] = updatedAlgo;
+    this.defaultAlgoList[index] = updatedAlgo;
   }
 
   deleteAlgorithm(index: number): void {
-    this.initializedAlgoList.splice(index, 1);
+    this.defaultAlgoList.splice(index, 1);
   }
 }
