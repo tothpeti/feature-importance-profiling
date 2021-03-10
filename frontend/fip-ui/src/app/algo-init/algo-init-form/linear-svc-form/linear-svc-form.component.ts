@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-linear-svc-form',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./linear-svc-form.component.css']
 })
 export class LinearSvcFormComponent implements OnInit {
+  algorithmForm: FormGroup;
 
   constructor() { }
 

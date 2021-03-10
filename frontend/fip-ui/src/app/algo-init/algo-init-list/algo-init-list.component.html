@@ -3,17 +3,16 @@
     Available Algorithms
   </div>
   <div class="card-body">
-    <div class="list-group">
-      <button type="button"
-              class="list-group-item"
-              *ngFor="let algo of availableAlgoList; let i = index"
-              (click)="onSelected(i)"
-              style="cursor: pointer;"
-              [ngClass]="{'active': selectedId  === i}"
+    <ul class="list-group">
+      <li class="list-group-item"
+          *ngFor="let algo of availableAlgoList; let i = index"
+          (click)="onSelected(i)"
+          style="cursor: pointer;"
+          [ngClass]="{'active': selectedId  === i}"
       >
         {{ algo }}
-      </button>
-    </div>
+      </li>
+    </ul>
   </div>
 </div>
 

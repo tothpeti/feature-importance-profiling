@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-xgboost-form',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./xgboost-form.component.css']
 })
 export class XgboostFormComponent implements OnInit {
+
+  algorithmForm: FormGroup;
 
   constructor() { }
 

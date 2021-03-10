@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-algo-init-form',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./algo-init-form.component.css']
 })
 export class AlgoInitFormComponent implements OnInit {
+  @Input() selectedAlgorithm: string;
 
   constructor() { }
 

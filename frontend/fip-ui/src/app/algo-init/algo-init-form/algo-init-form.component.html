@@ -1,1 +1,12 @@
-<app-tree-form></app-tree-form>
+<div *ngIf="selectedAlgorithm === 'RandomForestClassifier' || selectedAlgorithm === 'ExtraTreesClassifier'">
+  <app-tree-form></app-tree-form>
+</div>
+<div *ngIf="selectedAlgorithm === 'MutualInformation'">
+  <app-mutual-info-form></app-mutual-info-form>
+</div>
+<div *ngIf="selectedAlgorithm === 'LinearSVC'">
+  <app-linear-svc-form></app-linear-svc-form>
+</div>
+<div *ngIf="selectedAlgorithm === 'XGBoostClassifier'">
+  <app-xgboost-form></app-xgboost-form>
+</div>
