@@ -1,3 +1,49 @@
+<!-- Button trigger modal -->
+<a style="color: dodgerblue" data-toggle="modal" data-target="#modelParameterModal">
+  Parameter Descriptions
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="modelParameterModal" tabindex="-1" role="dialog" aria-labelledby="modelParameterModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modelParameterModalLabel">Parameter Descriptions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <dl class="row">
+            <dt class="col-sm-6">max_iter: int, default=1000</dt>
+            <dd class="col-sm-12">
+              The maximum number of iterations to be run.
+            </dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-6">C: float, default=1.0</dt>
+            <dd class="col-sm-12">
+              Regularization parameter. The strength of the regularization is inversely proportional to C. Must be strictly positive.
+            </dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-6">penalty: {{ "{" }}l1, l2{{ "}" }}, default=l1</dt>
+            <dd class="col-sm-12">
+              Specifies the norm used in the penalization. The ‘l2’ penalty is the standard used in SVC. The ‘l1’ leads to coef_ vectors that are sparse.
+            </dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-6">tol: float, default=0.0001</dt>
+            <dd class="col-sm-12">
+              Tolerance of stopping criteria.
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <form [formGroup]="algorithmForm" >
   <div class="form-inline">
     <div class="form-group">
@@ -44,4 +90,3 @@
     <button type="button" class="btn btn-danger">Reset</button>
   </div>
 </form>
-

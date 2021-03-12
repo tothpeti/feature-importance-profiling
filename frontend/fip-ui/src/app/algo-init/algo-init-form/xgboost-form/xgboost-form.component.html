@@ -1,3 +1,58 @@
+<!-- Button trigger modal -->
+<a style="color: dodgerblue" data-toggle="modal" data-target="#modelParameterModal">
+  Parameter Descriptions
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="modelParameterModal" tabindex="-1" role="dialog" aria-labelledby="modelParameterModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modelParameterModalLabel">Parameter Descriptions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <dl class="row">
+            <dt class="col-sm-6">eta: float, default=0.3</dt>
+            <dd class="col-sm-12">
+              Analogous to learning rate in GBM. Makes the model more robust by shrinking the weights on each step. Typical final values to be used: 0.01-0.2
+            </dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-6">max_depth: int, default=6</dt>
+            <dd class="col-sm-12">
+              The maximum depth of a tree. Used to control over-fitting as higher depth will allow model to learn relations very specific to a particular sample. Typical values: 3-10
+            </dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-7">min_child_weight: int, default=1</dt>
+            <dd class="col-sm-12">
+              Defines the minimum sum of weights of all observations required in a child. Used to control over-fitting.
+              Higher values prevent a model from learning relations which might be highly specific to the particular sample selected for a tree.
+              Too high values can lead to under-fitting.
+            </dd>
+          </dl>
+          <dl class="row">
+            <dt class="col-sm-7">gamma: int, default=0</dt>
+            <dd class="col-sm-12">
+              Minimum loss reduction required to make a further partition on a leaf node of the tree. The larger gamma is, the more conservative the algorithm will be.
+            </dd>
+          </dl>
+
+          <dl class="row">
+            <dt class="col-sm-7">alpha: float, default=0</dt>
+            <dd class="col-sm-12">
+              L1 regularization term on weights. Increasing this value will make model more conservative.
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 <form [formGroup]="algorithmForm" >
   <div class="form-inline">
     <div class="form-group">
@@ -35,26 +90,6 @@
       <input type="number" id="gamma" class="form-control mx-sm-3" formControlName="gamma"
              aria-describedby="gammaHelpLine">
       <small id="gammaHelpLine" class="text-muted">
-        ASd
-      </small>
-    </div>
-  </div>
-  <div class="form-inline">
-    <div class="form-group">
-      <label for="maxLeafNodes">max_leaf_nodes</label>
-      <input type="number" id="maxLeafNodes" class="form-control mx-sm-3" formControlName="maxLeafNodes"
-             aria-describedby="maxLeafNodesHelpLine">
-      <small id="maxLeafNodesHelpLine" class="text-muted">
-        ASd
-      </small>
-    </div>
-  </div>
-  <div class="form-inline">
-    <div class="form-group">
-      <label for="colsampleByTree">colsample_bytree</label>
-      <input type="number" id="colsampleByTree" class="form-control mx-sm-3" formControlName="colsampleByTree"
-             aria-describedby="colsampleByTreeHelpLine">
-      <small id="colsampleByTreeHelpLine" class="text-muted">
         ASd
       </small>
     </div>
