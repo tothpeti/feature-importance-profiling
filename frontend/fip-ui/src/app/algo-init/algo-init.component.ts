@@ -11,5 +11,4 @@ export class AlgoInitComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

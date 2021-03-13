@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {InMemoryDataStoreService} from '../../../shared/service/in-memory-data-store.service';
 import {IAlgorithm} from "../../../shared/model/algo-interface.model";
@@ -10,8 +10,8 @@ import {Subscription} from "rxjs";
   styleUrls: ['./tree-form.component.css']
 })
 export class TreeFormComponent implements OnInit, OnDestroy {
+  @Input() selectedDefaultAlgorithm: IAlgorithm;
 
-  selectedDefaultAlgo: IAlgorithm;
   selectedAlgoSubscription$: Subscription;
   algorithmForm: FormGroup;
   editMode = false;
@@ -29,13 +29,16 @@ export class TreeFormComponent implements OnInit, OnDestroy {
       criterion: new FormControl()
     });
      */
+    this.initForm();
+    /*
     this.selectedAlgoSubscription$ = this.inMemoryDataStoreService.selectedAlgorithmIdx$.subscribe(
       (index: number) => {
         this.selectedDefaultAlgo = this.inMemoryDataStoreService.getDefaultAlgorithmById(index);
+        this.initForm();
         console.log(this.selectedDefaultAlgo);
       }
     );
-    this.initForm();
+     */
   }
 
   ngOnDestroy(): void {
@@ -43,12 +46,12 @@ export class TreeFormComponent implements OnInit, OnDestroy {
   }
 
   private initForm() {
-    let nEstimators = this.selectedDefaultAlgo.nEstimators;
-    let maxDepth = this.selectedDefaultAlgo.maxDepth;
-    let minSamplesSplit = this.selectedDefaultAlgo.minSamplesSplit;
-    let minSamplesLeaf = this.selectedDefaultAlgo.minSamplesLeaf;
-    let maxFeatures = this.selectedDefaultAlgo.maxFeatures;
-    let criterion = this.selectedDefaultAlgo.criterion;
+    let nEstimators = this.selectedDefaultAlgorithm.nEstimators;
+    let maxDepth = this.selectedDefaultAlgorithm.maxDepth;
+    let minSamplesSplit = this.selectedDefaultAlgorithm.minSamplesSplit;
+    let minSamplesLeaf = this.selectedDefaultAlgorithm.minSamplesLeaf;
+    let maxFeatures = this.selectedDefaultAlgorithm.maxFeatures;
+    let criterion = this.selectedDefaultAlgorithm.criterion;
     console.log(nEstimators);
 
     this.algorithmForm = new FormGroup({

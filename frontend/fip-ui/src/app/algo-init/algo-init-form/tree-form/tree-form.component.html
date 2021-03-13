@@ -56,7 +56,7 @@
     </div>
   </div>
 </div>
-<form [formGroup]="algorithmForm" >
+<form *ngIf="algorithmForm" [formGroup]="algorithmForm" >
   <div class="form-inline mb-1">
     <div class="form-group">
       <label for="nEstimators">n_estimators</label>

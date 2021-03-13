@@ -4,7 +4,7 @@
   </div>
   <div class="card-body">
     <div *ngIf="selectedDefaultAlgo; else NoSelected">
-      <app-algo-init-form [selectedAlgorithm]="selectedDefaultAlgo.algoName"></app-algo-init-form>
+      <app-algo-init-form [selectedAlgorithm]="selectedDefaultAlgo"></app-algo-init-form>
     </div>
 
     <ng-template #NoSelected>
