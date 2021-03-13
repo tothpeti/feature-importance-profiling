@@ -14,6 +14,7 @@ import { TreeFormComponent } from './algo-init/algo-init-form/tree-form/tree-for
 import { MutualInfoFormComponent } from './algo-init/algo-init-form/mutual-info-form/mutual-info-form.component';
 import { LinearSvcFormComponent } from './algo-init/algo-init-form/linear-svc-form/linear-svc-form.component';
 import { XgboostFormComponent } from './algo-init/algo-init-form/xgboost-form/xgboost-form.component';
+import { RankingFormComponent } from './algo-init/ranking-form/ranking-form.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { XgboostFormComponent } from './algo-init/algo-init-form/xgboost-form/xg
     TreeFormComponent,
     MutualInfoFormComponent,
     LinearSvcFormComponent,
-    XgboostFormComponent
+    XgboostFormComponent,
+    RankingFormComponent
   ],
     imports: [
       BrowserModule,
