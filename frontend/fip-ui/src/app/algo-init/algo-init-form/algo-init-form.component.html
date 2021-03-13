@@ -11,5 +11,5 @@
   <app-linear-svc-form [selectedDefaultAlgorithm]="selectedAlgorithm"></app-linear-svc-form>
 </div>
 <div *ngIf="selectedAlgorithm.algoName === 'XGBoostClassifier'">
-  <app-xgboost-form></app-xgboost-form>
+  <app-xgboost-form [selectedDefaultAlgorithm]="selectedAlgorithm"></app-xgboost-form>
 </div>

@@ -53,7 +53,8 @@
     </div>
   </div>
 </div>
-<form [formGroup]="algorithmForm">
+<form [formGroup]="algorithmForm" (ngSubmit)="onSubmit()">
+  <input type="hidden" formControlName="name">
   <div class="form-inline mb-1">
     <div class="form-group">
       <label for="eta">eta</label>
@@ -90,6 +91,26 @@
       <input type="number" id="gamma" class="form-control mx-sm-3" formControlName="gamma"
              aria-describedby="gammaHelpLine">
       <small id="gammaHelpLine" class="text-muted">
+        ASd
+      </small>
+    </div>
+  </div>
+  <div class="form-inline mb-1">
+    <div class="form-group">
+      <label for="subsample">subsample</label>
+      <input type="number" id="subsample" class="form-control mx-sm-3" formControlName="subsample"
+             aria-describedby="subsampleHelpLine">
+      <small id="subsampleHelpLine" class="text-muted">
+        ASd
+      </small>
+    </div>
+  </div>
+  <div class="form-inline mb-1">
+    <div class="form-group">
+      <label for="colsampleByTree">colsample_bytree</label>
+      <input type="number" id="colsampleByTree" class="form-control mx-sm-3" formControlName="colsampleByTree"
+             aria-describedby="colsampleByTreeHelpLine">
+      <small id="colsampleByTreeHelpLine" class="text-muted">
         ASd
       </small>
     </div>
