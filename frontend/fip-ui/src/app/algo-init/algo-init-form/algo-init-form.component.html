@@ -1,4 +1,7 @@
-<div *ngIf="selectedAlgorithm.algoName === 'RandomForestClassifier' || selectedAlgorithm.algoName === 'ExtraTreesClassifier'">
+<div *ngIf="selectedAlgorithm.algoName === 'RandomForestClassifier' ">
+  <app-tree-form [selectedDefaultAlgorithm]="selectedAlgorithm"></app-tree-form>
+</div>
+<div *ngIf="selectedAlgorithm.algoName === 'ExtraTreesClassifier'">
   <app-tree-form [selectedDefaultAlgorithm]="selectedAlgorithm"></app-tree-form>
 </div>
 <div *ngIf="selectedAlgorithm.algoName === 'MutualInformation'">

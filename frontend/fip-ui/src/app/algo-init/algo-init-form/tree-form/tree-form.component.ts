@@ -19,16 +19,7 @@ export class TreeFormComponent implements OnInit, OnDestroy {
   constructor(private inMemoryDataStoreService: InMemoryDataStoreService) { }
 
   ngOnInit(): void {
-    /*
-    this.algorithmForm = new FormGroup({
-      nEstimators: new FormControl(),
-      maxDepth: new FormControl(),
-      minSamplesSplit: new FormControl(),
-      minSamplesLeaf: new FormControl(),
-      maxFeatures: new FormControl(),
-      criterion: new FormControl()
-    });
-     */
+    console.log(this.selectedDefaultAlgorithm);
     this.initForm();
     /*
     this.selectedAlgoSubscription$ = this.inMemoryDataStoreService.selectedAlgorithmIdx$.subscribe(
@@ -42,19 +33,20 @@ export class TreeFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.selectedAlgoSubscription$.unsubscribe();
+    // this.selectedAlgoSubscription$.unsubscribe();
   }
 
   private initForm() {
+    const name = this.selectedDefaultAlgorithm.algoName;
     let nEstimators = this.selectedDefaultAlgorithm.nEstimators;
     let maxDepth = this.selectedDefaultAlgorithm.maxDepth;
     let minSamplesSplit = this.selectedDefaultAlgorithm.minSamplesSplit;
     let minSamplesLeaf = this.selectedDefaultAlgorithm.minSamplesLeaf;
     let maxFeatures = this.selectedDefaultAlgorithm.maxFeatures;
     let criterion = this.selectedDefaultAlgorithm.criterion;
-    console.log(nEstimators);
 
     this.algorithmForm = new FormGroup({
+      name: new FormControl(name),
       nEstimators: new FormControl(nEstimators),
       maxDepth: new FormControl(maxDepth),
       minSamplesSplit: new FormControl(minSamplesSplit),
@@ -63,6 +55,23 @@ export class TreeFormComponent implements OnInit, OnDestroy {
       criterion: new FormControl(criterion)
     });
     console.log(this.algorithmForm);
+  }
+
+  onReset(): void {
+    this.algorithmForm.setValue({
+      name: this.selectedDefaultAlgorithm.algoName,
+      nEstimators: this.selectedDefaultAlgorithm.nEstimators,
+      maxDepth: null,
+      minSamplesSplit: this.selectedDefaultAlgorithm.minSamplesSplit,
+      minSamplesLeaf: this.selectedDefaultAlgorithm.minSamplesLeaf,
+      maxFeatures: this.selectedDefaultAlgorithm.maxFeatures,
+      criterion: this.selectedDefaultAlgorithm.criterion
+    });
+  }
+
+  onSubmit(): void {
+    this.inMemoryDataStoreService.addInitializedAlgorithm(this.algorithmForm.value);
+    this.onReset();
   }
 
 }
