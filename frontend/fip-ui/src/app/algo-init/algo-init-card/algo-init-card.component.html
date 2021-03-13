@@ -1,19 +1,17 @@
-<div class="row mt-lg-5">
-  <div *ngFor="let algorithm of initializedAlgorithmList">
-    <div *ngIf="algorithm.algoName === 'RandomForestClassifier'">
-      <app-tree-card [initAlgorithm]="algorithm"></app-tree-card>
-    </div>
-    <div *ngIf="algorithm.algoName === 'ExtraTreesClassifier'">
-      <app-tree-card [initAlgorithm]="algorithm"></app-tree-card>
-    </div>
-    <div *ngIf="algorithm.algoName === 'LinearSVC'">
-      <app-linear-svc-card></app-linear-svc-card>
-    </div>
-    <div *ngIf="algorithm.algoName === 'XGBoostClassifier'">
-      <app-xgboost-card></app-xgboost-card>
-    </div>
-    <div *ngIf="algorithm.algoName === 'MutualInformation'">
-      <app-mutual-info-card></app-mutual-info-card>
-    </div>
+<div *ngFor="let algorithm of initializedAlgorithmList">
+  <div *ngIf="algorithm.algoName === 'RandomForestClassifier'">
+    <app-tree-card [initAlgorithm]="algorithm"></app-tree-card>
+  </div>
+  <div *ngIf="algorithm.algoName === 'ExtraTreesClassifier'">
+    <app-tree-card [initAlgorithm]="algorithm"></app-tree-card>
+  </div>
+  <div *ngIf="algorithm.algoName === 'LinearSVC'">
+    <app-linear-svc-card [initAlgorithm]="algorithm"></app-linear-svc-card>
+  </div>
+  <div *ngIf="algorithm.algoName === 'XGBoostClassifier'">
+    <app-xgboost-card [initAlgorithm]="algorithm"></app-xgboost-card>
+  </div>
+  <div *ngIf="algorithm.algoName === 'MutualInformation'">
+    <app-mutual-info-card [initAlgorithm]="algorithm"></app-mutual-info-card>
   </div>
 </div>

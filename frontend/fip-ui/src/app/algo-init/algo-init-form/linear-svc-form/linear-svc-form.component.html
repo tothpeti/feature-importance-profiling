@@ -44,8 +44,9 @@
     </div>
   </div>
 </div>
-<form [formGroup]="algorithmForm" >
+<form [formGroup]="algorithmForm" (ngSubmit)="onSubmit()" >
   <div class="form-inline mb-1">
+    <input type="hidden" formControlName="name">
     <div class="form-group">
       <label for="maxIter">max_iter</label>
       <input type="number" id="maxIter" class="form-control mx-sm-3" formControlName="maxIter"
@@ -68,11 +69,10 @@
   <div class="form-inline mb-1">
     <div class="form-group">
       <label for="penalty">penalty</label>
-      <input type="number" id="penalty" class="form-control mx-sm-3" formControlName="penalty"
-             aria-describedby="penaltyHelpLine">
-      <small id="penaltyHelpLine" class="text-muted">
-        ASd
-      </small>
+      <select id="penalty" class="custom-select form-control mx-sm-3" formControlName="penalty">
+        <option value="l1" selected>l1</option>
+        <option value="l2">l2</option>
+      </select>
     </div>
   </div>
   <div class="form-inline mb-1">
@@ -87,6 +87,6 @@
   </div>
   <div class="form-group">
     <button type="submit" class="btn btn-primary">Add</button>
-    <button type="button" class="btn btn-danger">Reset</button>
+    <button type="button" class="btn btn-danger" (click)="onReset()">Reset</button>
   </div>
 </form>

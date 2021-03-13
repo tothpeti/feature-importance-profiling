@@ -8,7 +8,7 @@
   <app-mutual-info-form></app-mutual-info-form>
 </div>
 <div *ngIf="selectedAlgorithm.algoName === 'LinearSVC'">
-  <app-linear-svc-form></app-linear-svc-form>
+  <app-linear-svc-form [selectedDefaultAlgorithm]="selectedAlgorithm"></app-linear-svc-form>
 </div>
 <div *ngIf="selectedAlgorithm.algoName === 'XGBoostClassifier'">
   <app-xgboost-form></app-xgboost-form>

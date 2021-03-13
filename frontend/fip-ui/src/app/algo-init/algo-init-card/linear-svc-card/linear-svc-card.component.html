@@ -1,1 +1,32 @@
-<p>linear-svc-card works!</p>
+<div class="card">
+  <div class="card-header">
+    {{ initAlgorithm.algoName }}
+  </div>
+  <div class="card-body">
+    <dl class="row">
+      <dt>max_iter: </dt>
+      <dd>
+        {{ initAlgorithm.maxIter }}
+      </dd>
+    </dl>
+    <dl class="row">
+      <dt class>C: </dt>
+      <dd>
+        {{ initAlgorithm.cPenalty }}
+      </dd>
+    </dl>
+    <dl class="row">
+      <dt>penalty: </dt>
+      <dd>
+        {{ initAlgorithm.penalty }}
+      </dd>
+    </dl>
+    <dl class="row">
+      <dt>tol: </dt>
+      <dd>
+        {{ initAlgorithm.tol }}
+      </dd>
+    </dl>
+  </div>
+</div>
+

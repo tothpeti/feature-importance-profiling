@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IAlgorithm} from '../../../shared/model/algo-interface.model';
 
 @Component({
   selector: 'app-xgboost-card',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./xgboost-card.component.css']
 })
 export class XgboostCardComponent implements OnInit {
+
+  @Input() initAlgorithm: IAlgorithm;
 
   constructor() { }
 

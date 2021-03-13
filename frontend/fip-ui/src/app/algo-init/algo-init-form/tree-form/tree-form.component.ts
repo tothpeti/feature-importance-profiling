@@ -38,7 +38,7 @@ export class TreeFormComponent implements OnInit, OnDestroy {
     // this.selectedAlgoSubscription$.unsubscribe();
   }
 
-  private initForm() {
+  private initForm(): void {
     const name = this.selectedDefaultAlgorithm.algoName;
     let nEstimators = this.selectedDefaultAlgorithm.nEstimators;
     let maxDepth = this.selectedDefaultAlgorithm.maxDepth;

@@ -1,1 +1,41 @@
-<p>xgboost-card works!</p>
+<div class="card">
+  <div class="card-header">
+    {{ initAlgorithm.algoName }}
+  </div>
+  <div class="card-body">
+    <dl class="row">
+      <dt>eta: </dt>
+      <dd>
+        {{ initAlgorithm.eta }}
+      </dd>
+    </dl>
+    <dl class="row">
+      <dt >max_depth: </dt>
+      <dd *ngIf="initAlgorithm.maxDepth !== null; else HasValue">
+        {{ initAlgorithm.maxDepth }}
+      </dd>
+      <ng-template #HasValue>
+        None
+      </ng-template>
+    </dl>
+    <dl class="row">
+      <dt class>min_child_weight: </dt>
+      <dd>
+        {{ initAlgorithm.minChildWeight }}
+      </dd>
+    </dl>
+    <dl class="row">
+      <dt>gamma: </dt>
+      <dd>
+        {{ initAlgorithm.gamma }}
+      </dd>
+    </dl>
+    <dl class="row">
+      <dt>alpha: </dt>
+      <dd>
+        {{ initAlgorithm.alpha }}
+      </dd>
+    </dl>
+  </div>
+</div>
+

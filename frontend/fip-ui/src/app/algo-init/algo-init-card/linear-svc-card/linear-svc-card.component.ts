@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IAlgorithm} from '../../../shared/model/algo-interface.model';
 
 @Component({
   selector: 'app-linear-svc-card',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./linear-svc-card.component.css']
 })
 export class LinearSvcCardComponent implements OnInit {
+
+  @Input() initAlgorithm: IAlgorithm;
 
   constructor() { }
 
