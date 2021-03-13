@@ -3,6 +3,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {InMemoryDataStoreService} from '../../../shared/service/in-memory-data-store.service';
 import {IAlgorithm} from "../../../shared/model/algo-interface.model";
 import {Subscription} from "rxjs";
+import {RandomForestModel} from "../../../shared/model/random-forest.model";
+import {ExtraTreesModel} from "../../../shared/model/extra-trees.model";
 
 @Component({
   selector: 'app-tree-form',
@@ -70,7 +72,29 @@ export class TreeFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    this.inMemoryDataStoreService.addInitializedAlgorithm(this.algorithmForm.value);
+    let newAlgo = null;
+    if (this.algorithmForm.value.name === 'RandomForestClassifier') {
+      newAlgo = new RandomForestModel(
+        this.algorithmForm.value.nEstimators,
+        this.algorithmForm.value.maxDepth,
+        this.algorithmForm.value.minSamplesSplit,
+        this.algorithmForm.value.minSamplesLeaf,
+        this.algorithmForm.value.maxFeatures,
+        this.algorithmForm.value.criterion
+      );
+    } else {
+      newAlgo = new ExtraTreesModel(
+        this.algorithmForm.value.nEstimators,
+        this.algorithmForm.value.maxDepth,
+        this.algorithmForm.value.minSamplesSplit,
+        this.algorithmForm.value.minSamplesLeaf,
+        this.algorithmForm.value.maxFeatures,
+        this.algorithmForm.value.criterion
+      );
+    }
+
+    this.inMemoryDataStoreService.addInitializedAlgorithm(newAlgo);
+    console.log(this.algorithmForm.value);
     this.onReset();
   }
 
