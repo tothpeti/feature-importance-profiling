@@ -1,7 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {AlgoInitService} from '../service/algo-init.service';
+import {AlgoInitDataTransferService} from '../service/algo-init-data-transfer.service';
 import {Subscription} from 'rxjs';
 import {IAlgorithm} from '../../shared/model/algo-interface.model';
+import {InMemoryDataStoreService} from '../../shared/service/in-memory-data-store.service';
 
 @Component({
   selector: 'app-algo-init-edit',
@@ -10,14 +11,14 @@ import {IAlgorithm} from '../../shared/model/algo-interface.model';
 })
 export class AlgoInitEditComponent implements OnInit, OnDestroy {
 
-  selectedAlgo: IAlgorithm;
+  selectedDefaultAlgo: IAlgorithm;
   selectedAlgoSubscription$: Subscription;
 
-  constructor(private algoInitService: AlgoInitService) { }
+  constructor(private inMemoryDataStoreService: InMemoryDataStoreService) { }
 
   ngOnInit(): void {
-    this.selectedAlgoSubscription$ = this.algoInitService.selectedAlgorithmIdx$.subscribe(
-      (index: number) => this.selectedAlgo = this.algoInitService.getAlgorithmById(index)
+    this.selectedAlgoSubscription$ = this.inMemoryDataStoreService.selectedAlgorithmIdx$.subscribe(
+      (index: number) => this.selectedDefaultAlgo = this.inMemoryDataStoreService.getDefaultAlgorithmById(index)
     );
   }
 

@@ -15,7 +15,10 @@ import { MutualInfoFormComponent } from './algo-init/algo-init-form/mutual-info-
 import { LinearSvcFormComponent } from './algo-init/algo-init-form/linear-svc-form/linear-svc-form.component';
 import { XgboostFormComponent } from './algo-init/algo-init-form/xgboost-form/xgboost-form.component';
 import { RankingFormComponent } from './algo-init/ranking-form/ranking-form.component';
-
+import { LinearSvcCardComponent } from './algo-init/algo-init-card/linear-svc-card/linear-svc-card.component';
+import { TreeCardComponent } from './algo-init/algo-init-card/tree-card/tree-card.component';
+import { MutualInfoCardComponent } from './algo-init/algo-init-card/mutual-info-card/mutual-info-card.component';
+import { XgboostCardComponent } from './algo-init/algo-init-card/xgboost-card/xgboost-card.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +32,16 @@ import { RankingFormComponent } from './algo-init/ranking-form/ranking-form.comp
     MutualInfoFormComponent,
     LinearSvcFormComponent,
     XgboostFormComponent,
-    RankingFormComponent
+    RankingFormComponent,
+    LinearSvcCardComponent,
+    TreeCardComponent,
+    MutualInfoCardComponent,
+    XgboostCardComponent
   ],
     imports: [
       BrowserModule,
       AppRoutingModule,
       ReactiveFormsModule
-
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,8 +3,8 @@
     Parameters
   </div>
   <div class="card-body">
-    <div *ngIf="selectedAlgo; else NoSelected">
-      <app-algo-init-form [selectedAlgorithm]="selectedAlgo.algoName"></app-algo-init-form>
+    <div *ngIf="selectedDefaultAlgo; else NoSelected">
+      <app-algo-init-form [selectedAlgorithm]="selectedDefaultAlgo.algoName"></app-algo-init-form>
     </div>
 
     <ng-template #NoSelected>

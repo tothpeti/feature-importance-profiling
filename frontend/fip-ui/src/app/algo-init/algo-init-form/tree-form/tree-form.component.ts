@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {AlgoInitService} from '../../service/algo-init.service';
+import {AlgoInitDataTransferService} from '../../service/algo-init-data-transfer.service';
 
 @Component({
   selector: 'app-tree-form',
@@ -11,7 +11,7 @@ export class TreeFormComponent implements OnInit {
 
   algorithmForm: FormGroup;
 
-  constructor(private algoInitService: AlgoInitService) { }
+  constructor(private algoInitService: AlgoInitDataTransferService) { }
 
   ngOnInit(): void {
   }
