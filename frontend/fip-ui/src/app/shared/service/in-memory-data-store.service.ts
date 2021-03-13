@@ -45,6 +45,10 @@ export class InMemoryDataStoreService {
     return this.defaultAlgoList[index];
   }
 
+  getInitAlgorithmById(index: number): IAlgorithm {
+    return this.initializedAlgoList[index];
+  }
+
   addInitializedAlgorithm(newAlgo: IAlgorithm): void {
     this.initializedAlgoList.push(newAlgo);
     this.initializedAlgoListChanged$.next(this.initializedAlgoList.slice());
