@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IAlgorithm} from '../../../shared/model/algo-interface.model';
+import {InMemoryDataStoreService} from '../../../shared/service/in-memory-data-store.service';
+import {MutualInformationModel} from '../../../shared/model/mutual-information.model';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-mutual-info-form',
@@ -7,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MutualInfoFormComponent implements OnInit {
 
-  constructor() { }
+  @Input() selectedDefaultAlgorithm: IAlgorithm;
+  // algorithmForm: FormGroup;
+
+  constructor(private inMemoryDataStoreService: InMemoryDataStoreService) { }
 
   ngOnInit(): void {
+    // this.initForm();
   }
 
+  /*
+  initForm(): void {
+    const algorithmName = this.selectedDefaultAlgorithm.algoName;
+    this.algorithmForm = new FormGroup({
+      name: new FormControl(algorithmName)
+    });
+    console.log(this.algorithmForm.value.name);
+  }
+
+   */
+
+  onSubmit(): void {
+    const newAlgo = new MutualInformationModel();
+    this.inMemoryDataStoreService.addInitializedAlgorithm(newAlgo);
+  }
 }

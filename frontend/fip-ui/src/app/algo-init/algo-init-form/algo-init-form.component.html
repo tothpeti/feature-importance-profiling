@@ -5,7 +5,7 @@
   <app-tree-form [selectedDefaultAlgorithm]="selectedAlgorithm"></app-tree-form>
 </div>
 <div *ngIf="selectedAlgorithm.algoName === 'MutualInformation'">
-  <app-mutual-info-form></app-mutual-info-form>
+  <app-mutual-info-form [selectedDefaultAlgorithm]="selectedAlgorithm"></app-mutual-info-form>
 </div>
 <div *ngIf="selectedAlgorithm.algoName === 'LinearSVC'">
   <app-linear-svc-form [selectedDefaultAlgorithm]="selectedAlgorithm"></app-linear-svc-form>
