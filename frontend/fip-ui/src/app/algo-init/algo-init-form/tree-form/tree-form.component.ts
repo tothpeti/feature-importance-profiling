@@ -1,10 +1,10 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {InMemoryDataStoreService} from '../../../shared/service/in-memory-data-store.service';
-import {IAlgorithm} from "../../../shared/model/algo-interface.model";
-import {Subscription} from "rxjs";
-import {RandomForestModel} from "../../../shared/model/random-forest.model";
-import {ExtraTreesModel} from "../../../shared/model/extra-trees.model";
+import {IAlgorithm} from '../../../shared/model/algo-interface.model';
+import {Subscription} from 'rxjs';
+import {RandomForestModel} from '../../../shared/model/random-forest.model';
+import {ExtraTreesModel} from '../../../shared/model/extra-trees.model';
 
 @Component({
   selector: 'app-tree-form',
@@ -51,12 +51,12 @@ export class TreeFormComponent implements OnInit, OnDestroy {
 
   private initForm(): void {
     const name = this.selectedDefaultAlgorithm.algoName;
-    let nEstimators = this.selectedDefaultAlgorithm.nEstimators;
-    let maxDepth = this.selectedDefaultAlgorithm.maxDepth;
-    let minSamplesSplit = this.selectedDefaultAlgorithm.minSamplesSplit;
-    let minSamplesLeaf = this.selectedDefaultAlgorithm.minSamplesLeaf;
-    let maxFeatures = this.selectedDefaultAlgorithm.maxFeatures;
-    let criterion = this.selectedDefaultAlgorithm.criterion;
+    const nEstimators = this.selectedDefaultAlgorithm.nEstimators;
+    const maxDepth = this.selectedDefaultAlgorithm.maxDepth;
+    const minSamplesSplit = this.selectedDefaultAlgorithm.minSamplesSplit;
+    const minSamplesLeaf = this.selectedDefaultAlgorithm.minSamplesLeaf;
+    const maxFeatures = this.selectedDefaultAlgorithm.maxFeatures;
+    const criterion = this.selectedDefaultAlgorithm.criterion;
 
     this.algorithmForm = new FormGroup({
       name: new FormControl(name),
