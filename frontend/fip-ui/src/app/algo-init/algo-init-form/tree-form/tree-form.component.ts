@@ -12,30 +12,41 @@ import {ExtraTreesModel} from "../../../shared/model/extra-trees.model";
   styleUrls: ['./tree-form.component.css']
 })
 export class TreeFormComponent implements OnInit, OnDestroy {
+
   @Input() selectedDefaultAlgorithm: IAlgorithm;
 
-  selectedAlgoSubscription$: Subscription;
+  editIdx: number;
   algorithmForm: FormGroup;
+  editInitAlgorithm$: Subscription;
+  editAlgorithm: IAlgorithm;
   editMode = false;
 
   constructor(private inMemoryDataStoreService: InMemoryDataStoreService) { }
 
   ngOnInit(): void {
-    console.log(this.selectedDefaultAlgorithm);
     this.initForm();
-    /*
-    this.selectedAlgoSubscription$ = this.inMemoryDataStoreService.selectedAlgorithmIdx$.subscribe(
-      (index: number) => {
-        this.selectedDefaultAlgo = this.inMemoryDataStoreService.getDefaultAlgorithmById(index);
-        this.initForm();
-        console.log(this.selectedDefaultAlgo);
+
+    this.editInitAlgorithm$ = this.inMemoryDataStoreService.editInitAlgorithm$.subscribe(
+      ({index, algorithm}) => {
+        this.editIdx = index;
+        this.editAlgorithm = algorithm;
+        this.editMode = true;
+
+        this.algorithmForm.setValue({
+          name: this.editAlgorithm.algoName,
+          nEstimators: this.editAlgorithm.nEstimators,
+          maxDepth: this.editAlgorithm.maxDepth,
+          minSamplesSplit: this.editAlgorithm.minSamplesSplit,
+          minSamplesLeaf: this.editAlgorithm.minSamplesLeaf,
+          maxFeatures: this.editAlgorithm.maxFeatures,
+          criterion: this.editAlgorithm.criterion
+        });
       }
     );
-     */
   }
 
   ngOnDestroy(): void {
-    // this.selectedAlgoSubscription$.unsubscribe();
+    this.editInitAlgorithm$.unsubscribe();
   }
 
   private initForm(): void {
@@ -56,7 +67,6 @@ export class TreeFormComponent implements OnInit, OnDestroy {
       maxFeatures: new FormControl(maxFeatures),
       criterion: new FormControl(criterion)
     });
-    console.log(this.algorithmForm);
   }
 
   onReset(): void {
@@ -93,8 +103,12 @@ export class TreeFormComponent implements OnInit, OnDestroy {
       );
     }
 
-    this.inMemoryDataStoreService.addInitializedAlgorithm(newAlgo);
-    console.log(this.algorithmForm.value);
+    if (this.editMode) {
+      this.inMemoryDataStoreService.updateInitializedAlgorithm(this.editIdx, newAlgo);
+      this.editMode = false;
+    } else {
+      this.inMemoryDataStoreService.addInitializedAlgorithm(newAlgo);
+    }
     this.onReset();
   }
 

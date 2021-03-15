@@ -45,20 +45,11 @@ export class LinearSvcFormComponent implements OnInit, OnDestroy {
   }
 
   initForm(): void {
-    let name = '';
-    let maxIter = 0;
-    let cPenalty = 0.0;
-    let penalty = '';
-    let tol = 0.0;
-
-
-    if (!this.editMode) {
-      name = this.selectedDefaultAlgorithm.algoName;
-      maxIter = this.selectedDefaultAlgorithm.maxIter;
-      cPenalty = this.selectedDefaultAlgorithm.cPenalty;
-      penalty = this.selectedDefaultAlgorithm.penalty;
-      tol = this.selectedDefaultAlgorithm.tol;
-    }
+    const name = this.selectedDefaultAlgorithm.algoName;
+    let maxIter = this.selectedDefaultAlgorithm.maxIter;
+    let cPenalty = this.selectedDefaultAlgorithm.cPenalty;
+    let penalty = this.selectedDefaultAlgorithm.penalty;
+    let tol = this.selectedDefaultAlgorithm.tol;
 
     this.algorithmForm = new FormGroup({
       name: new FormControl(name),

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IAlgorithm} from '../../../shared/model/algo-interface.model';
-import {InMemoryDataStoreService} from "../../../shared/service/in-memory-data-store.service";
+import {InMemoryDataStoreService} from '../../../shared/service/in-memory-data-store.service';
 
 @Component({
   selector: 'app-xgboost-card',
