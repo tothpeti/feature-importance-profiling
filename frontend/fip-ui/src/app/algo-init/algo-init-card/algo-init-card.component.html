@@ -1,4 +1,4 @@
-<div *ngFor="let algorithm of initializedAlgorithmList">
+<div *ngFor="let algorithm of initializedAlgorithmList; let i = index">
   <div *ngIf="algorithm.algoName === 'RandomForestClassifier'">
     <app-tree-card [initAlgorithm]="algorithm"></app-tree-card>
   </div>
@@ -6,7 +6,7 @@
     <app-tree-card [initAlgorithm]="algorithm"></app-tree-card>
   </div>
   <div *ngIf="algorithm.algoName === 'LinearSVC'">
-    <app-linear-svc-card [initAlgorithm]="algorithm"></app-linear-svc-card>
+    <app-linear-svc-card [initAlgorithm]="algorithm" [initIndex]="i"></app-linear-svc-card>
   </div>
   <div *ngIf="algorithm.algoName === 'XGBoostClassifier'">
     <app-xgboost-card [initAlgorithm]="algorithm"></app-xgboost-card>

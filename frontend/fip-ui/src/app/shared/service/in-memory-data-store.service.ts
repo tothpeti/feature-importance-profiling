@@ -7,11 +7,18 @@ import {LinearSvcModel} from '../model/linear-svc.model';
 import {XgboostModel} from '../model/xgboost.model';
 import {MutualInformationModel} from '../model/mutual-information.model';
 
+type AlgorithmWithIndex = {
+  index: number,
+  algorithm: IAlgorithm
+};
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class InMemoryDataStoreService {
 
+  editInitAlgorithm$ = new Subject<AlgorithmWithIndex>();
   selectedAlgorithmIdx$: Subject<number> = new Subject<number>();
   initializedAlgoListChanged$: Subject<IAlgorithm[]> = new Subject<IAlgorithm[]>();
 

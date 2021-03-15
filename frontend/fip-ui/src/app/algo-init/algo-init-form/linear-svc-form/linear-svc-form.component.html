@@ -85,8 +85,11 @@
       </small>
     </div>
   </div>
-  <div class="form-group">
+  <div *ngIf="!editMode" class="form-group">
     <button type="submit" class="btn btn-primary">Add</button>
     <button type="button" class="btn btn-danger" (click)="onReset()">Reset</button>
+  </div>
+  <div *ngIf="editMode" class="form-group">
+    <button type="submit" class="btn btn-primary">Save</button>
   </div>
 </form>
