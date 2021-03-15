@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IAlgorithm} from '../../../shared/model/algo-interface.model';
+import {InMemoryDataStoreService} from '../../../shared/service/in-memory-data-store.service';
 
 @Component({
   selector: 'app-mutual-info-card',
@@ -9,10 +10,14 @@ import {IAlgorithm} from '../../../shared/model/algo-interface.model';
 export class MutualInfoCardComponent implements OnInit {
 
   @Input() initAlgorithm: IAlgorithm;
+  @Input() initIndex: number;
 
-  constructor() { }
+  constructor(private inMemoryDataStoreService: InMemoryDataStoreService) { }
 
   ngOnInit(): void {
   }
 
+  onRemove(): void {
+    this.inMemoryDataStoreService.deleteInitializedAlgorithm(this.initIndex);
+  }
 }

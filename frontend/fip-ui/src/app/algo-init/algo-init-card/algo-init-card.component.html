@@ -1,17 +1,17 @@
 <div *ngFor="let algorithm of initializedAlgorithmList; let i = index">
   <div *ngIf="algorithm.algoName === 'RandomForestClassifier'">
-    <app-tree-card [initAlgorithm]="algorithm"></app-tree-card>
+    <app-tree-card [initAlgorithm]="algorithm" [initIndex]="i"></app-tree-card>
   </div>
   <div *ngIf="algorithm.algoName === 'ExtraTreesClassifier'">
-    <app-tree-card [initAlgorithm]="algorithm"></app-tree-card>
+    <app-tree-card [initAlgorithm]="algorithm" [initIndex]="i"></app-tree-card>
   </div>
   <div *ngIf="algorithm.algoName === 'LinearSVC'">
     <app-linear-svc-card [initAlgorithm]="algorithm" [initIndex]="i"></app-linear-svc-card>
   </div>
   <div *ngIf="algorithm.algoName === 'XGBoostClassifier'">
-    <app-xgboost-card [initAlgorithm]="algorithm"></app-xgboost-card>
+    <app-xgboost-card [initAlgorithm]="algorithm" [initIndex]="i"></app-xgboost-card>
   </div>
   <div *ngIf="algorithm.algoName === 'MutualInformation'">
-    <app-mutual-info-card [initAlgorithm]="algorithm"></app-mutual-info-card>
+    <app-mutual-info-card [initAlgorithm]="algorithm" [initIndex]="i"></app-mutual-info-card>
   </div>
 </div>
