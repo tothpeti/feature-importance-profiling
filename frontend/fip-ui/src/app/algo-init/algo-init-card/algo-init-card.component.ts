@@ -17,8 +17,12 @@ export class AlgoInitCardComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initAlgoListChangedSubscription$ = this.inMemoryDataStoreService.initializedAlgoListChanged$.subscribe(
-      (algorithms: IAlgorithm[]) => this.initializedAlgorithmList = algorithms
+      (algorithms: IAlgorithm[]) => {
+        this.initializedAlgorithmList = algorithms;
+        console.log(this.inMemoryDataStoreService.initializedAlgoList);
+      }
     );
+
   }
 
   ngOnDestroy(): void {
