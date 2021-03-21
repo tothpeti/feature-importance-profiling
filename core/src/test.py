@@ -1,4 +1,5 @@
-
+from profiler.profiler import FeatureImportanceProfiler
 
 if __name__ == '__main__':
-    pass
+    featureP = FeatureImportanceProfiler()
+    featureP.visualize()

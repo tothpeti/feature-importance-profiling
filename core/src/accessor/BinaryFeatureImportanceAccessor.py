@@ -4,7 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.feature_selection import mutual_info_classif
 from xgboost.sklearn import XGBClassifier
 
-from accessor import BaseFeatureImportanceAccessor
+from core.src.accessor import BaseFeatureImportanceAccessor
 
 
 class BinaryFeatureImportanceAccessor(BaseFeatureImportanceAccessor):

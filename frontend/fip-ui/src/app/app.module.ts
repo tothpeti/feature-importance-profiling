@@ -19,6 +19,7 @@ import { LinearSvcCardComponent } from './algo-init/algo-init-card/linear-svc-ca
 import { TreeCardComponent } from './algo-init/algo-init-card/tree-card/tree-card.component';
 import { MutualInfoCardComponent } from './algo-init/algo-init-card/mutual-info-card/mutual-info-card.component';
 import { XgboostCardComponent } from './algo-init/algo-init-card/xgboost-card/xgboost-card.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { XgboostCardComponent } from './algo-init/algo-init-card/xgboost-card/xg
     imports: [
       BrowserModule,
       AppRoutingModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

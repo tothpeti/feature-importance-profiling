@@ -1,12 +1,18 @@
 from flask import Flask, request
-from core.src.datastore import DataStore
+from flask_cors import CORS, cross_origin
+
+from core.src.repository.DataRepository import DataStore
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 
 @app.route('/', methods=['POST'])
+@cross_origin()
 def hello():
     data = request.get_json()
+    print(data)
     DataStore.add_json_data(data)
     return "Hello"
 
