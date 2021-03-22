@@ -18,7 +18,7 @@ type AlgorithmWithIndex = {
 })
 export class InMemoryDataStoreService {
 
-  editInitAlgorithm$ = new Subject<AlgorithmWithIndex>();
+  editInitAlgorithm$: Subject<AlgorithmWithIndex> = new Subject<AlgorithmWithIndex>();
   selectedAlgorithmIdx$: Subject<number> = new Subject<number>();
   initializedAlgoListChanged$: Subject<IAlgorithm[]> = new Subject<IAlgorithm[]>();
 

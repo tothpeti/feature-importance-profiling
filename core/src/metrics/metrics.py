@@ -2,7 +2,7 @@ from typing import Any
 from sklearn.metrics import confusion_matrix, matthews_corrcoef, accuracy_score, f1_score, precision_score, recall_score
 
 
-class Metric:
+class Metrics:
     @classmethod
     def matthews_corr(cls, y_test: Any, y_pred: Any) -> float:
         return matthews_corrcoef(y_test, y_pred)

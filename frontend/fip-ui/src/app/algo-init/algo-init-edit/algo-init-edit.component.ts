@@ -11,15 +11,17 @@ import {InMemoryDataStoreService} from '../../shared/service/in-memory-data-stor
 })
 export class AlgoInitEditComponent implements OnInit, OnDestroy {
 
-  selectedDefaultAlgo: IAlgorithm;
+  selectedAlgorithm: IAlgorithm;
   selectedAlgoSubscription$: Subscription;
 
   constructor(private inMemoryDataStoreService: InMemoryDataStoreService) { }
 
   ngOnInit(): void {
     this.selectedAlgoSubscription$ = this.inMemoryDataStoreService.selectedAlgorithmIdx$.subscribe(
-      (index: number) => this.selectedDefaultAlgo = this.inMemoryDataStoreService.getDefaultAlgorithmById(index)
+      (index: number) => this.selectedAlgorithm = this.inMemoryDataStoreService.getDefaultAlgorithmById(index)
     );
+
+
   }
 
   ngOnDestroy(): void {

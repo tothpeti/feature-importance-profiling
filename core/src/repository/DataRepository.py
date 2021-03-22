@@ -3,6 +3,7 @@ class DataRepository:
     _json_data_list = []
     _algorithms_list = []
     _ranking_methods_list = []
+    _initialized_models_dict = {}
 
     @classmethod
     def get_json_data_list(cls):
@@ -15,6 +16,14 @@ class DataRepository:
     @classmethod
     def get_ranking_methods_list(cls):
         return cls._ranking_methods_list
+
+    @classmethod
+    def get_initialized_models(cls):
+        return cls._initialized_models_dict
+
+    @classmethod
+    def add_initialized_model(cls, model_name, model):
+        cls._initialized_models_dict[model_name] = model
 
     @classmethod
     def set_json_data_list(cls, data):

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IAlgorithm} from "../../shared/model/algo-interface.model";
+import {IAlgorithm} from '../../shared/model/algo-interface.model';
 
 @Component({
   selector: 'app-algo-init-form',

@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS, cross_origin
 
-from core.src.repository.DataRepository import DataStore
+from core.src.service.DataService import DataService
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -13,16 +13,11 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def hello():
     data = request.get_json()
     print(data)
-    DataStore.add_json_data(data)
-    return "Hello"
+    DataService.set_json_data(data)
+    DataService.process_data()
+
+    return "Hello there!"
 
 
-@app.route('/c')
-def ho():
-    print(DataStore.json_data_list)
-    DataStore.process_data()
-    return 'Hi'
-
-
-if __name__ == '__main__' :
+if __name__ == '__main__':
     app.run(debug=True)

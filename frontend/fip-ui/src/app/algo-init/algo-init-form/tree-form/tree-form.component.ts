@@ -25,7 +25,7 @@ export class TreeFormComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initForm();
-
+    /*
     this.editInitAlgorithm$ = this.inMemoryDataStoreService.editInitAlgorithm$.subscribe(
       ({index, algorithm}) => {
         this.editIdx = index;
@@ -41,12 +41,15 @@ export class TreeFormComponent implements OnInit, OnDestroy {
           maxFeatures: this.editAlgorithm.maxFeatures,
           criterion: this.editAlgorithm.criterion
         });
+
       }
     );
+
+     */
   }
 
   ngOnDestroy(): void {
-    this.editInitAlgorithm$.unsubscribe();
+    // this.editInitAlgorithm$.unsubscribe();
   }
 
   private initForm(): void {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {AlgoInitDataTransferService} from '../service/algo-init-data-transfer.service';
 import {Subscription} from 'rxjs';
 import {InMemoryDataStoreService} from '../../shared/service/in-memory-data-store.service';
@@ -18,6 +18,7 @@ export class AlgoInitListComponent implements OnInit {
   ngOnInit(): void {
     this.availableAlgoList = this.inMemoryDataStoreService.getAlgorithmList();
   }
+
 
   onSelected(index: number): void {
     this.selectedId = index;
