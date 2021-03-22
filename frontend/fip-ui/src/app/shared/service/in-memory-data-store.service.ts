@@ -39,9 +39,11 @@ export class InMemoryDataStoreService {
   ];
 
   initializedAlgoList: IAlgorithm[];
+  selectedRankingMethods: string[];
 
   constructor() {
     this.initializedAlgoList = [];
+    this.selectedRankingMethods = [];
   }
 
   getAlgorithmList(): string[] {
@@ -61,6 +63,7 @@ export class InMemoryDataStoreService {
     this.initializedAlgoListChanged$.next(this.initializedAlgoList.slice());
   }
 
+
   updateInitializedAlgorithm(index: number, newAlgo: IAlgorithm): void {
     this.initializedAlgoList[index] = newAlgo;
     this.initializedAlgoListChanged$.next(this.initializedAlgoList.slice());
@@ -69,6 +72,21 @@ export class InMemoryDataStoreService {
   deleteInitializedAlgorithm(index: number): void {
     this.initializedAlgoList.splice(index, 1);
     this.initializedAlgoListChanged$.next(this.initializedAlgoList.slice());
+  }
+
+  addSelectedRankingMethod(methodName: string): void {
+    this.selectedRankingMethods.push(methodName);
+  }
+
+  containsRankingMethodByName(methodName: string): boolean {
+    return this.selectedRankingMethods.some(x => x === methodName);
+  }
+
+  deleteRankingMethodByName(methodName: string): void {
+    const index = this.selectedRankingMethods.indexOf(methodName, 0);
+    if (index > -1) {
+      this.selectedRankingMethods.splice(index, 1);
+    }
   }
 
 }
