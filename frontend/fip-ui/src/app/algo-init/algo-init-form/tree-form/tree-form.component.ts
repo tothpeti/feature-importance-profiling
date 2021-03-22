@@ -11,45 +11,19 @@ import {ExtraTreesModel} from '../../../shared/model/extra-trees.model';
   templateUrl: './tree-form.component.html',
   styleUrls: ['./tree-form.component.css']
 })
-export class TreeFormComponent implements OnInit, OnDestroy {
+export class TreeFormComponent implements OnInit {
 
   @Input() selectedDefaultAlgorithm: IAlgorithm;
 
   editIdx: number;
   algorithmForm: FormGroup;
-  editInitAlgorithm$: Subscription;
-  editAlgorithm: IAlgorithm;
+
   editMode = false;
 
   constructor(private inMemoryDataStoreService: InMemoryDataStoreService) { }
 
   ngOnInit(): void {
     this.initForm();
-    /*
-    this.editInitAlgorithm$ = this.inMemoryDataStoreService.editInitAlgorithm$.subscribe(
-      ({index, algorithm}) => {
-        this.editIdx = index;
-        this.editAlgorithm = algorithm;
-        this.editMode = true;
-
-        this.algorithmForm.setValue({
-          name: this.editAlgorithm.algoName,
-          nEstimators: this.editAlgorithm.nEstimators,
-          maxDepth: this.editAlgorithm.maxDepth,
-          minSamplesSplit: this.editAlgorithm.minSamplesSplit,
-          minSamplesLeaf: this.editAlgorithm.minSamplesLeaf,
-          maxFeatures: this.editAlgorithm.maxFeatures,
-          criterion: this.editAlgorithm.criterion
-        });
-
-      }
-    );
-
-     */
-  }
-
-  ngOnDestroy(): void {
-    // this.editInitAlgorithm$.unsubscribe();
   }
 
   private initForm(): void {

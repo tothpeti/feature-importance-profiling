@@ -1,9 +1,9 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IAlgorithm} from '../../../shared/model/algo-interface.model';
 import {InMemoryDataStoreService} from '../../../shared/service/in-memory-data-store.service';
-import {FormControl, FormGroup} from "@angular/forms";
-import {RandomForestModel} from "../../../shared/model/random-forest.model";
-import {ExtraTreesModel} from "../../../shared/model/extra-trees.model";
+import {FormControl, FormGroup} from '@angular/forms';
+import {RandomForestModel} from '../../../shared/model/random-forest.model';
+import {ExtraTreesModel} from '../../../shared/model/extra-trees.model';
 
 @Component({
   selector: 'app-tree-card',

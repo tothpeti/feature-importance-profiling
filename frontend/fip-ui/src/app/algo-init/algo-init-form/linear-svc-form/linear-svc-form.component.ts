@@ -10,39 +10,19 @@ import {Subscription} from 'rxjs';
   templateUrl: './linear-svc-form.component.html',
   styleUrls: ['./linear-svc-form.component.css']
 })
-export class LinearSvcFormComponent implements OnInit, OnDestroy {
+export class LinearSvcFormComponent implements OnInit {
 
   @Input() selectedDefaultAlgorithm: IAlgorithm;
   editIdx: number;
   algorithmForm: FormGroup;
-  editInitAlgorithm$: Subscription;
-  editAlgorithm: IAlgorithm;
   editMode = false;
 
   constructor(private inMemoryDataStoreService: InMemoryDataStoreService) { }
 
   ngOnInit(): void {
     this.initForm();
-    this.editInitAlgorithm$ = this.inMemoryDataStoreService.editInitAlgorithm$.subscribe(
-      ({index, algorithm}) => {
-        this.editIdx = index;
-        this.editAlgorithm = algorithm;
-        this.editMode = true;
-
-        this.algorithmForm.setValue({
-          name: this.editAlgorithm.algoName,
-          maxIter: this.editAlgorithm.maxIter,
-          cPenalty: this.editAlgorithm.cPenalty,
-          penalty: this.editAlgorithm.penalty,
-          tol: this.editAlgorithm.tol
-        });
-      }
-    );
   }
 
-  ngOnDestroy(): void {
-    this.editInitAlgorithm$.unsubscribe();
-  }
 
   initForm(): void {
     const name = this.selectedDefaultAlgorithm.algoName;
