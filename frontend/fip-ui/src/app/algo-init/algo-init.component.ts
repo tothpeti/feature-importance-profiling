@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {DataTransferService} from "../shared/service/data-transfer.service";
-import {InMemoryDataStoreService} from "../shared/service/in-memory-data-store.service";
+import {DataTransferService} from '../shared/service/data-transfer.service';
+import {InMemoryDataStoreService} from '../shared/service/in-memory-data-store.service';
 
 @Component({
   selector: 'app-algo-init',
@@ -16,6 +16,8 @@ export class AlgoInitComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.dataTransferService.postData(this.inMemoryDataStoreService.initializedAlgoList);
+    this.dataTransferService.postData(
+      this.inMemoryDataStoreService.selectedRankingMethods,
+      this.inMemoryDataStoreService.initializedAlgoList);
   }
 }

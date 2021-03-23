@@ -10,8 +10,8 @@ export class DataTransferService {
   constructor(private http: HttpClient) {
   }
 
-  postData(algorithms: IAlgorithm[]): void {
-    const data = {algorithms};
+  postData(ranking: string[], algorithms: IAlgorithm[]): void {
+    const data = {ranking, algorithms};
 
     this.http.post<{ name: string }>(
      'http://127.0.0.1:5000/',

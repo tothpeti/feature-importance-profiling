@@ -14,17 +14,16 @@ class DataService:
 
     @classmethod
     def process_data(cls):
-
         tmp_json_data = DataRepository.get_json_data_list()
 
         for algorithm in tmp_json_data['algorithms']:
             cls.extract_algorithm(algorithm=algorithm)
 
         print(DataRepository.get_initialized_models())
-        """
-        for ranking_method in tmp_json_data['ranking']:
-            cls.extract_ranking_methods(methods=ranking_method)
-        """
+
+        cls.extract_ranking_methods(methods=tmp_json_data['ranking'])
+
+        print(DataRepository.get_ranking_methods_list())
 
     @classmethod
     def extract_algorithm(cls, algorithm: dict):
@@ -85,4 +84,4 @@ class DataService:
 
     @classmethod
     def extract_ranking_methods(cls, methods: dict):
-        pass
+        DataRepository.set_ranking_methods_list(methods=methods)
