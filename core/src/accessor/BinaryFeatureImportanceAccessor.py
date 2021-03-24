@@ -2,38 +2,50 @@ from typing import Any
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
 from sklearn.svm import LinearSVC
 from sklearn.feature_selection import mutual_info_classif
-from xgboost.sklearn import XGBClassifier
 
 from core.src.accessor import BaseFeatureImportanceAccessor
 from core.src.repository.DataRepository import DataRepository
+from core.src.ranking.ranking import Ranking
 
 
 class BinaryFeatureImportanceAccessor(BaseFeatureImportanceAccessor):
     @staticmethod
-    def fi_random_forest(x_train: Any, y_train: Any) -> Any:
-        model = RandomForestClassifier(n_estimators=100, criterion="gini")
-        model.fit(x_train, y_train)
-        return model.feature_importances_
+    def fi_random_forest(result_dict) -> Any:
+        model = DataRepository.get_algorithm_by_name('RandomForestClassifier')
+        result_dict = Ranking.get_features_importance_rank_data(
+            estimator=model
+        )
+
+        return result_dict
 
     @staticmethod
-    def fi_xgboost(x_train: Any, y_train: Any) -> Any:
+    def fi_xgboost(result_dict) -> Any:
         model = DataRepository.get_algorithm_by_name('XGBoostClassifier')
-        model.fit(x_train, y_train)
-        return model.feature_importances_
+        result_dict = Ranking.get_features_importance_rank_data(
+            estimator=model,
+        )
+
+        return result_dict
 
     @staticmethod
-    def fi_mutual_information(x_train: Any, y_train: Any) -> Any:
-        tmp = [mutual_info_classif(x_train[col].values.reshape(-1, 1), y_train) for col in x_train.columns]
-        return [value[0] for value in tmp]
+    def fi_mutual_information(result_dict) -> Any:
+        result_dict = Ranking.get_mutual_info_rank_data()
+        return result_dict
 
     @staticmethod
-    def fi_linear_svc(x_train: Any, y_train: Any) -> Any:
-        model = LinearSVC()
-        model.fit(x_train, y_train)
-        return model.coef_[0]
+    def fi_linear_svc(result_dict) -> Any:
+        model = DataRepository.get_algorithm_by_name('LinearSVC')
+        result_dict = Ranking.get_coef_rank_data(
+
+        )
+
+        return result_dict
 
     @staticmethod
-    def fi_extra_trees(x_train: Any, y_train: Any) -> Any:
-        model = ExtraTreesClassifier()
-        model.fit(x_train, y_train)
-        return model.feature_importances_
+    def fi_extra_trees(result_dict) -> Any:
+        model = DataRepository.get_algorithm_by_name('ExtraTreesClassifier')
+        result_dict = Ranking.get_features_importance_rank_data(
+
+        )
+
+        return result_dict

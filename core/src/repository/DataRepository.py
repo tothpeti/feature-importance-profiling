@@ -1,11 +1,12 @@
 from collections import defaultdict
 
+
 class DataRepository:
     _json_data_list = []
     _algorithms_list = []
     _ranking_methods_list = []
     _initialized_models_dict = {}
-    _features_importance_result_dict: defaultdict[list]  = {}
+    _features_importance_result_dict: defaultdict[list] = {}
 
     @classmethod
     def get_json_data_list(cls):
