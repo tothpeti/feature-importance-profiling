@@ -1,9 +1,11 @@
+from collections import defaultdict
 
 class DataRepository:
     _json_data_list = []
     _algorithms_list = []
     _ranking_methods_list = []
     _initialized_models_dict = {}
+    _features_importance_result_dict: defaultdict[list]  = {}
 
     @classmethod
     def get_json_data_list(cls):
@@ -12,6 +14,10 @@ class DataRepository:
     @classmethod
     def get_algorithms_list(cls):
         return cls._algorithms_list
+
+    @classmethod
+    def get_algorithm_by_name(cls, name):
+        return cls._initialized_models_dict[name]
 
     @classmethod
     def get_ranking_methods_list(cls):
@@ -36,3 +42,11 @@ class DataRepository:
     @classmethod
     def set_ranking_methods_list(cls, methods):
         cls._ranking_methods_list = methods
+
+    @classmethod
+    def get_features_importance_dict(cls):
+        return cls._features_importance_result_dict
+
+    @classmethod
+    def set_feature_importance(cls, result_dict):
+        cls._features_importance_result_dict = result_dict

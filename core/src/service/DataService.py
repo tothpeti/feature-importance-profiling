@@ -2,6 +2,7 @@ from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
 from sklearn.svm import LinearSVC
 from sklearn.feature_selection import mutual_info_classif
 from xgboost.sklearn import XGBClassifier
+from numpy.random import RandomState
 
 from core.src.repository.DataRepository import DataRepository
 
@@ -29,6 +30,8 @@ class DataService:
     def extract_algorithm(cls, algorithm: dict):
         model_name = algorithm['algoName']
 
+        rng = RandomState(0)
+
         if model_name == 'LinearSVC':
             params = {
                 'C': algorithm['cPenalty'],
@@ -38,6 +41,7 @@ class DataService:
             }
 
             model = LinearSVC(**params)
+            model.set_params(random_state=rng)
             DataRepository.add_initialized_model(model_name=model_name, model=model)
 
         elif model_name == 'RandomForestClassifier':
@@ -51,6 +55,7 @@ class DataService:
             }
 
             model = RandomForestClassifier(**params)
+            model.set_params(random_state=rng)
             DataRepository.add_initialized_model(model_name=model_name, model=model)
 
         elif model_name == 'ExtraTreesClassifier':
@@ -64,6 +69,7 @@ class DataService:
             }
 
             model = ExtraTreesClassifier(**params)
+            model.set_params(random_state=rng)
             DataRepository.add_initialized_model(model_name=model_name, model=model)
 
         elif model_name == 'XGBoostClassifier':
@@ -73,13 +79,15 @@ class DataService:
                 'min_child_weight': algorithm['minChildWeight'],
                 'gamma': algorithm['gamma'],
                 'sub_sample': algorithm['subsample'],
-                'colsample_bytree': algorithm['colsampleByTree']
+                'colsample_bytree': algorithm['colsampleByTree'],
+                'objective': 'binary:logistic'
             }
 
-            model = XGBClassifier(**params, objective='binary:logistic')
+            model = XGBClassifier(**params)
             DataRepository.add_initialized_model(model_name=model_name, model=model)
 
         else:
+            # this branch is used for adding MutualInformation to the list
             DataRepository.add_initialized_model(model_name=model_name, model=None)
 
     @classmethod
