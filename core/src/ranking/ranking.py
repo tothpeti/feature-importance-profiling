@@ -2,6 +2,7 @@ from collections import Counter
 from sklearn.model_selection import cross_validate
 from sklearn.feature_selection import mutual_info_classif
 import scipy.stats as ss
+import numpy as np
 
 
 class Ranking:
@@ -13,15 +14,26 @@ class Ranking:
             two_most_common = Counter(value).most_common(2)
 
             if len(two_most_common) >= 2 and two_most_common[0][1] == two_most_common[1][1]:
+                # IF there are two ranking with the same number of occurrences then
+                # get the average of both of the ranking
                 mean = (two_most_common[0][0] + two_most_common[1][0]) / 2
                 frequency = int(round(mean, 0))
                 frequency_list.append(frequency)
             else:
                 frequency_list.append(two_most_common[0][0])
 
+        return frequency_list
+
     @classmethod
-    def avg_rank(cls):
-        pass
+    def avg_rank(cls, result_dict):
+        average_list = []
+
+        for key, value in result_dict.items():
+            average = np.mean(value) + 0.01
+            rounded_average = int(round(average, 0))
+            average_list.append(rounded_average)
+
+        return average_list
 
     @classmethod
     def success_rate_ratio(cls):
