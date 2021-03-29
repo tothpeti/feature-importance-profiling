@@ -7,6 +7,8 @@ class DataRepository:
     _ranking_methods_list = []
     _initialized_models_dict = {}
     _features_importance_result_dict: defaultdict[list] = {}
+    _dataset = []
+    _estimator = None
 
     @classmethod
     def get_json_data_list(cls):
@@ -51,3 +53,11 @@ class DataRepository:
     @classmethod
     def set_feature_importance(cls, result_dict):
         cls._features_importance_result_dict = result_dict
+
+    @classmethod
+    def set_estimator(cls, estimator):
+        cls._estimator = estimator
+
+    @classmethod
+    def set_dataset(cls, dataset):
+        cls._dataset = dataset

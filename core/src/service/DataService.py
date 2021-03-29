@@ -80,7 +80,8 @@ class DataService:
                 'gamma': algorithm['gamma'],
                 'sub_sample': algorithm['subsample'],
                 'colsample_bytree': algorithm['colsampleByTree'],
-                'objective': 'binary:logistic'
+                'objective': 'binary:logistic',
+                'use_label_encoder': False
             }
 
             model = XGBClassifier(**params)
