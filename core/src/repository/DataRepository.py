@@ -1,5 +1,9 @@
 from collections import defaultdict
+from typing import Optional
 
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from numpy.random import RandomState
 
 class DataRepository:
     _json_data_list = []
@@ -7,8 +11,13 @@ class DataRepository:
     _ranking_methods_list = []
     _initialized_models_dict = {}
     _features_importance_result_dict: defaultdict[list] = {}
-    _dataset = []
+    _features = None
+    _target = None
     _estimator = None
+    _x_train = None
+    _x_test = None
+    _y_train = None
+    _y_test = None
 
     @classmethod
     def get_json_data_list(cls):
@@ -59,5 +68,15 @@ class DataRepository:
         cls._estimator = estimator
 
     @classmethod
-    def set_dataset(cls, dataset):
-        cls._dataset = dataset
+    def set_dataset(cls, dataset: pd.DataFrame):
+        cls._features = dataset.iloc[:, :-1]
+        cls._target = dataset.iloc[:, -1]
+
+    @classmethod
+    def set_train_test_split(cls, train_size: Optional[int] = 0.7):
+        # Set random_state value
+        rng = RandomState(0)
+
+        # Splitting data
+        cls._x_train, cls._x_test, cls._y_train, cls._y_test =\
+            train_test_split(cls._features, cls._target, train_size=train_size, random_state=rng)
