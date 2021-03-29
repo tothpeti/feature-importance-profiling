@@ -11,7 +11,7 @@ class DataRepository:
     _algorithms_list = []
     _ranking_methods_list = []
     _initialized_models_dict = {}
-    _features_importance_result_dict: defaultdict[list] = {}
+    _features_importance_result_dict = defaultdict(list)
     _features = None
     _target = None
     _estimator = None

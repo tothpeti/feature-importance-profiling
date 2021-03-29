@@ -25,7 +25,7 @@ class DataService:
 
     @classmethod
     def run_importance_extraction(cls):
-        result_dict: defaultdict[list] = defaultdict()
+        result_dict = defaultdict(list)
         features = DataRepository.get_features_set()
         target = DataRepository.get_target_set()
 
@@ -39,6 +39,8 @@ class DataService:
                     target=target
                 )
 
+        print(result_dict)
+
     @classmethod
     def extract_algorithm(cls, algorithm: dict):
         model_name = algorithm['algoName']
@@ -50,7 +52,8 @@ class DataService:
                 'C': algorithm['cPenalty'],
                 'penalty': algorithm['penalty'],
                 'tol': algorithm['tol'],
-                'max_iter': algorithm['maxIter']
+                'max_iter': algorithm['maxIter'],
+                'dual': False
             }
 
             model = LinearSVC(**params)

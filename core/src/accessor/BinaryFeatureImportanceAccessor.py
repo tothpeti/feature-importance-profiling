@@ -1,11 +1,12 @@
 from typing import Any
 
-from core.src.accessor import BaseFeatureImportanceAccessor
+from core.src.accessor.BaseFeatureImportanceAccessor import BaseFeatureImportanceAccessor
 from core.src.repository.DataRepository import DataRepository
 from core.src.ranking.ranking import Ranking
 
 
 class BinaryFeatureImportanceAccessor(BaseFeatureImportanceAccessor):
+
     @staticmethod
     def fi_random_forest(features, target, result_dict) -> Any:
         model = DataRepository.get_algorithm_by_name('RandomForestClassifier')

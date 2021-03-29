@@ -6,6 +6,10 @@ import scipy.stats as ss
 
 class Ranking:
     @classmethod
+    def frequency_rank(cls):
+        pass
+
+    @classmethod
     def avg_rank(cls):
         pass
 
@@ -22,7 +26,7 @@ class Ranking:
         pass
 
     @staticmethod
-    def _get_estimator_rank_data(feature_importance, result_dict: defaultdict[list]):
+    def _get_estimator_rank_data(feature_importance, result_dict):
         for idx, rank in enumerate(ss.rankdata(feature_importance)):
             col_name = 'x' + str(idx + 1)
             result_dict[col_name].append(abs(int(round(rank, 0))))
@@ -34,13 +38,13 @@ class Ranking:
 
         for est in estimators_cv['estimator']:
             result_dict = Ranking._get_estimator_rank_data(
-                est.coef[0], result_dict=result_dict
+                est.coef_[0], result_dict=result_dict
             )
 
         return result_dict
 
     @staticmethod
-    def get_features_importance_rank_data(estimator, features, target, result_dict: defaultdict[list], cv=5):
+    def get_features_importance_rank_data(estimator, features, target, result_dict, cv=5):
         estimators_cv = cross_validate(estimator, X=features, y=target, cv=cv, return_estimator=True)
 
         for est in estimators_cv['estimator']:
@@ -51,7 +55,7 @@ class Ranking:
         return result_dict
 
     @staticmethod
-    def get_mutual_info_rank_data(features, target, result_dict: defaultdict[list]):
+    def get_mutual_info_rank_data(features, target, result_dict):
         list_mutual_info = []
 
         for column in features.columns:
