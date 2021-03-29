@@ -29,6 +29,10 @@ class DataRepository:
         return cls._algorithms_list
 
     @classmethod
+    def get_algorithms_names(cls):
+        return cls._initialized_models_dict.keys()
+
+    @classmethod
     def get_algorithm_by_name(cls, name):
         return cls._initialized_models_dict[name]
 
@@ -63,6 +67,14 @@ class DataRepository:
     @classmethod
     def set_feature_importance(cls, result_dict):
         cls._features_importance_result_dict = result_dict
+
+    @classmethod
+    def get_features_set(cls):
+        return cls._features
+
+    @classmethod
+    def get_target_set(cls):
+        return cls._target
 
     @classmethod
     def set_estimator(cls, estimator):

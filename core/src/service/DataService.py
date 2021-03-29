@@ -1,10 +1,11 @@
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
 from sklearn.svm import LinearSVC
-from sklearn.feature_selection import mutual_info_classif
 from xgboost.sklearn import XGBClassifier
 from numpy.random import RandomState
+from collections import defaultdict
 
 from core.src.repository.DataRepository import DataRepository
+from core.src.accessor.BinaryFeatureImportanceAccessor import BinaryFeatureImportanceAccessor
 
 
 class DataService:
@@ -20,11 +21,23 @@ class DataService:
         for algorithm in tmp_json_data['algorithms']:
             cls.extract_algorithm(algorithm=algorithm)
 
-        print(DataRepository.get_initialized_models())
-
         cls.extract_ranking_methods(methods=tmp_json_data['ranking'])
 
-        print(DataRepository.get_ranking_methods_list())
+    @classmethod
+    def run_importance_extraction(cls):
+        result_dict: defaultdict[list] = defaultdict()
+        features = DataRepository.get_features_set()
+        target = DataRepository.get_target_set()
+
+        # Run feature importance extraction for all the initialized models
+        for model_name in DataRepository.get_algorithms_names():
+            result_dict =\
+                BinaryFeatureImportanceAccessor.select_fi_algorithm(
+                    model_name=model_name,
+                    result_dict=result_dict,
+                    features=features,
+                    target=target
+                )
 
     @classmethod
     def extract_algorithm(cls, algorithm: dict):
