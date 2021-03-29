@@ -1,4 +1,4 @@
-from collections import defaultdict
+from collections import Counter
 from sklearn.model_selection import cross_validate
 from sklearn.feature_selection import mutual_info_classif
 import scipy.stats as ss
@@ -6,8 +6,18 @@ import scipy.stats as ss
 
 class Ranking:
     @classmethod
-    def frequency_rank(cls):
-        pass
+    def frequency_rank(cls, result_dict):
+        frequency_list = []
+
+        for key, value in result_dict.items():
+            two_most_common = Counter(value).most_common(2)
+
+            if len(two_most_common) >= 2 and two_most_common[0][1] == two_most_common[1][1]:
+                mean = (two_most_common[0][0] + two_most_common[1][0]) / 2
+                frequency = int(round(mean, 0))
+                frequency_list.append(frequency)
+            else:
+                frequency_list.append(two_most_common[0][0])
 
     @classmethod
     def avg_rank(cls):

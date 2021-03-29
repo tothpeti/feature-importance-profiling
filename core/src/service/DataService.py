@@ -24,7 +24,7 @@ class DataService:
         cls.extract_ranking_methods(methods=tmp_json_data['ranking'])
 
     @classmethod
-    def run_importance_extraction(cls):
+    def run_profiling(cls):
         result_dict = defaultdict(list)
         features = DataRepository.get_features_set()
         target = DataRepository.get_target_set()
@@ -38,6 +38,9 @@ class DataService:
                     features=features,
                     target=target
                 )
+
+        # Rank all each features based on result_dict's values
+
 
         print(result_dict)
 

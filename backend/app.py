@@ -15,7 +15,7 @@ def hello():
     print(data)
     DataService.set_json_data(data)
     DataService.process_data()
-    DataService.run_importance_extraction()
+    DataService.run_profiling()
 
     return "Hello there!"
 
