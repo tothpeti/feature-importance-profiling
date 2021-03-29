@@ -5,6 +5,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from numpy.random import RandomState
 
+
 class DataRepository:
     _json_data_list = []
     _algorithms_list = []
@@ -73,7 +74,7 @@ class DataRepository:
         cls._target = dataset.iloc[:, -1]
 
     @classmethod
-    def set_train_test_split(cls, train_size: Optional[int] = 0.7):
+    def set_train_test_split(cls, train_size: Optional[float] = 0.7):
         # Set random_state value
         rng = RandomState(0)
 

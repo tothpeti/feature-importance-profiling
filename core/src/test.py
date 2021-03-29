@@ -11,5 +11,5 @@ if __name__ == '__main__':
     df = pd.read_csv(path_to_file)
     estimator = LogisticRegression()
 
-    feature_profiler = FeatureImportanceProfiler(dataset=df, estimator=estimator)
+    feature_profiler = FeatureImportanceProfiler(dataset=df, estimator=estimator, train_size=0.7)
     feature_profiler.visualize()
