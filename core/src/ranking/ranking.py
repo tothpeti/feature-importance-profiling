@@ -47,6 +47,20 @@ class Ranking:
     def instant_runoff(cls):
         pass
 
+    @classmethod
+    def filter_columns_by_ranks(cls, rank_list, feature_columns):
+        filtered_columns = []
+
+        # Get the half of feature columns, then subtract 1 from it to get the minimum acceptable rank
+        # NOTE!: 0.01 used for help the rounding method round up correctly
+        min_acceptable_rank = int(round((len(feature_columns) / 2) + 0.01, 0)) - 1
+
+        for index, value in enumerate(rank_list):
+            if min_acceptable_rank <= value:
+                filtered_columns.append("x" + str(index + 1))
+
+        return filtered_columns
+
     @staticmethod
     def _get_estimator_rank_data(feature_importance, result_dict):
         for idx, rank in enumerate(ss.rankdata(feature_importance)):
