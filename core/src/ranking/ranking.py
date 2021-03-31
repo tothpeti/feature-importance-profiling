@@ -25,7 +25,7 @@ class Ranking:
         return frequency_list
 
     @classmethod
-    def avg_rank(cls, result_dict):
+    def average_rank(cls, result_dict):
         average_list = []
 
         for key, value in result_dict.items():
@@ -60,6 +60,15 @@ class Ranking:
                 filtered_columns.append("x" + str(index + 1))
 
         return filtered_columns
+
+    @classmethod
+    def select_ranking_method(cls, method_name, result_dict):
+
+        if method_name == 'Average':
+            return Ranking.average_rank(result_dict=result_dict)
+
+        elif method_name == 'Frequency':
+            return Ranking.frequency_rank(result_dict=result_dict)
 
     @staticmethod
     def _get_estimator_rank_data(feature_importance, result_dict):

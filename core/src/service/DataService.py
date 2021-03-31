@@ -4,6 +4,7 @@ from xgboost.sklearn import XGBClassifier
 from numpy.random import RandomState
 from collections import defaultdict
 
+from core.src.ranking.ranking import Ranking
 from core.src.repository.DataRepository import DataRepository
 from core.src.accessor.BinaryFeatureImportanceAccessor import BinaryFeatureImportanceAccessor
 
@@ -40,7 +41,10 @@ class DataService:
                 )
 
         # Rank all each features based on result_dict's values
+        for ranking_name in DataRepository.get_ranking_methods_list():
+            result_list = Ranking.select_ranking_method(
 
+            )
 
         print(result_dict)
 
