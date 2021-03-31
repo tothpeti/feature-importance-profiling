@@ -57,7 +57,7 @@ class Ranking:
 
         for index, value in enumerate(rank_list):
             if min_acceptable_rank <= value:
-                filtered_columns.append("x" + str(index + 1))
+                filtered_columns.append(index)
 
         return filtered_columns
 

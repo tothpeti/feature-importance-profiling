@@ -1,12 +1,14 @@
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier
 from sklearn.svm import LinearSVC
+from sklearn.model_selection import cross_validate
 from xgboost.sklearn import XGBClassifier
-from numpy.random import RandomState
+import numpy as np
 from collections import defaultdict
 
 from core.src.ranking.ranking import Ranking
 from core.src.repository.DataRepository import DataRepository
 from core.src.accessor.BinaryFeatureImportanceAccessor import BinaryFeatureImportanceAccessor
+from core.src.metrics.metrics import Metrics
 
 
 class DataService:
@@ -20,9 +22,9 @@ class DataService:
         tmp_json_data = DataRepository.get_json_data_list()
 
         for algorithm in tmp_json_data['algorithms']:
-            cls.extract_algorithm(algorithm=algorithm)
+            cls._extract_algorithm(algorithm=algorithm)
 
-        cls.extract_ranking_methods(methods=tmp_json_data['ranking'])
+        cls._extract_ranking_methods(methods=tmp_json_data['ranking'])
 
     @classmethod
     def run_profiling(cls):
@@ -41,18 +43,43 @@ class DataService:
                 )
 
         # Rank all each features based on result_dict's values
+        test_results = {}
         for ranking_name in DataRepository.get_ranking_methods_list():
-            result_list = Ranking.select_ranking_method(
 
+            # Select and run ranking method on result_dict
+            rank_list = Ranking.select_ranking_method(
+                method_name=ranking_name,
+                result_dict=result_dict
             )
+
+            # Get filtered columns
+            test_results[ranking_name]['filtered_columns'] =\
+                Ranking.filter_columns_by_ranks(rank_list=rank_list, feature_columns=features.columns)
 
         print(result_dict)
 
     @classmethod
-    def extract_algorithm(cls, algorithm: dict):
+    def test_estimator_on_original_dataset(cls, estimator, features, target):
+        x_train, x_test, y_train, y_test = DataRepository.get_train_test_split(features=features, target=target)
+
+        estimator_cross = cross_validate(estimator=estimator, X=x_train, y=y_train, cv=10, scoring=Metrics.roc_auc_scorer())
+
+        estimator_cross_max_auc_index = np.argmax(estimator_cross['test_score'])
+        best_estimator = estimator_cross['estimator'][estimator_cross_max_auc_index]
+
+        y_pred = best_estimator.predict(x_test)
+
+    @classmethod
+    def test_estimator_on_filtered_dataset(cls, estimator, features, target):
+        x_train, x_test, y_train, y_test = DataRepository.get_train_test_split(features=features, target=target)
+
+
+
+    @classmethod
+    def _extract_algorithm(cls, algorithm: dict):
         model_name = algorithm['algoName']
 
-        rng = RandomState(0)
+        rng = np.random.RandomState(0)
 
         if model_name == 'LinearSVC':
             params = {
@@ -115,5 +142,5 @@ class DataService:
             DataRepository.add_initialized_model(model_name=model_name, model=None)
 
     @classmethod
-    def extract_ranking_methods(cls, methods: dict):
+    def _extract_ranking_methods(cls, methods: dict):
         DataRepository.set_ranking_methods_list(methods=methods)

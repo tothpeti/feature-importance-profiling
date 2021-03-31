@@ -15,12 +15,13 @@ class DataRepository:
     _features = None
     _target = None
     _estimator = None
-    _x_train = None
-    _x_test = None
-    _x_val = None
-    _y_train = None
-    _y_test = None
-    _y_val = None
+    _train_size = 0.7
+    # _x_train = None
+    # _x_test = None
+    # _x_val = None
+    # _y_train = None
+    # _y_test = None
+    # _y_val = None
 
     @classmethod
     def get_json_data_list(cls):
@@ -87,18 +88,27 @@ class DataRepository:
         cls._features = dataset.iloc[:, :-1]
         cls._target = dataset.iloc[:, -1]
 
+    # @classmethod
+    # def set_train_test_val_split(cls, train_size: Optional[float] = 0.7):
+    #     # Set random_state value
+    #     rng = RandomState(0)
+    #
+    #     test_size = 1.0 - train_size
+    #     validate_size = train_size * test_size
+    #
+    #     # Splitting data into train and test sets
+    #     cls._x_train, cls._x_test, cls._y_train, cls._y_test =\
+    #         train_test_split(cls._features, cls._target, train_size=train_size, random_state=rng)
+    #
+    #     # Splitting train set into train and validate sets
+    #     cls._x_train, cls._x_val, cls._y_train, cls._y_val =\
+    #         train_test_split(cls._x_train, cls._y_train, test_size=validate_size, random_state=rng)
+
     @classmethod
-    def set_train_test_val_split(cls, train_size: Optional[float] = 0.7):
-        # Set random_state value
+    def get_train_test_split(cls, features, target):
         rng = RandomState(0)
+        return train_test_split(features, target, train_size=cls._train_size, random_state=rng)
 
-        test_size = 1.0 - train_size
-        validate_size = train_size * test_size
-
-        # Splitting data into train and test sets
-        cls._x_train, cls._x_test, cls._y_train, cls._y_test =\
-            train_test_split(cls._features, cls._target, train_size=train_size, random_state=rng)
-
-        # Splitting train set into train and validate sets
-        cls._x_train, cls._x_val, cls._y_train, cls._y_val =\
-            train_test_split(cls._x_train, cls._y_train, test_size=validate_size, random_state=rng)
+    @classmethod
+    def set_train_size(cls, train_size: Optional[float] = 0.7):
+        cls._train_size = train_size
