@@ -52,7 +52,7 @@ class Ranking:
         filtered_columns = []
 
         # Get the half of feature columns, then subtract 1 from it to get the minimum acceptable rank
-        # NOTE!: 0.01 used for help the rounding method round up correctly
+        # NOTE!: 0.01 used for helping the rounding method to round up correctly
         min_acceptable_rank = int(round((len(feature_columns) / 2) + 0.01, 0)) - 1
 
         for index, value in enumerate(rank_list):
