@@ -84,6 +84,10 @@ class DataRepository:
         cls._estimator = estimator
 
     @classmethod
+    def get_estimator(cls):
+        return cls._estimator
+
+    @classmethod
     def set_dataset(cls, dataset: pd.DataFrame):
         cls._features = dataset.iloc[:, :-1]
         cls._target = dataset.iloc[:, -1]

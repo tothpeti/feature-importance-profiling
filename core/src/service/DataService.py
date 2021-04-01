@@ -4,6 +4,7 @@ from sklearn.model_selection import cross_validate
 from xgboost.sklearn import XGBClassifier
 import numpy as np
 from collections import defaultdict
+import copy
 
 from core.src.ranking.ranking import Ranking
 from core.src.repository.DataRepository import DataRepository
@@ -44,6 +45,15 @@ class DataService:
 
         # Rank all each features based on result_dict's values
         test_results = {}
+
+        # Get metrics results from running estimator on original dataset
+        test_results['original'] =\
+            DataService.test_estimator_on_dataset(
+                estimator=copy.deepcopy(DataRepository.get_estimator()),
+                features=features,
+                target=target
+            )
+
         for ranking_name in DataRepository.get_ranking_methods_list():
 
             # Select and run ranking method on result_dict
@@ -52,6 +62,13 @@ class DataService:
                 result_dict=result_dict
             )
 
+            test_results[ranking_name] = \
+                DataService.test_estimator_on_dataset(
+                    estimator=copy.deepcopy(DataRepository.get_estimator()),
+                    features=features,
+                    target=target
+                )
+
             # Get filtered columns
             test_results[ranking_name]['filtered_columns'] =\
                 Ranking.filter_columns_by_ranks(rank_list=rank_list, feature_columns=features.columns)
@@ -59,7 +76,8 @@ class DataService:
         print(result_dict)
 
     @classmethod
-    def test_estimator_on_original_dataset(cls, estimator, features, target):
+    def test_estimator_on_dataset(cls, estimator, features, target):
+
         x_train, x_test, y_train, y_test = DataRepository.get_train_test_split(features=features, target=target)
 
         estimator_cross = cross_validate(estimator=estimator, X=x_train, y=y_train, cv=10, scoring=Metrics.roc_auc_scorer())
@@ -69,11 +87,13 @@ class DataService:
 
         y_pred = best_estimator.predict(x_test)
 
-    @classmethod
-    def test_estimator_on_filtered_dataset(cls, estimator, features, target):
-        x_train, x_test, y_train, y_test = DataRepository.get_train_test_split(features=features, target=target)
-
-
+        return {
+            'accuracy': Metrics.accuracy(y_test=y_test, y_pred=y_pred),
+            'f1': Metrics.f1(y_test=y_test, y_pred=y_pred),
+            'precision': Metrics.precision(y_test=y_test, y_pred=y_pred),
+            'recall': Metrics.recall(y_test=y_test, y_pred=y_pred),
+            'matthews': Metrics.matthews_corr(y_test=y_test, y_pred=y_pred)
+        }
 
     @classmethod
     def _extract_algorithm(cls, algorithm: dict):
