@@ -62,16 +62,20 @@ class DataService:
                 result_dict=result_dict
             )
 
+            # Get filtered columns
+            filtered_columns = Ranking.filter_columns_by_ranks(rank_list=rank_list, feature_columns=features.columns)
+
+            filtered_features = features.iloc[:, filtered_columns]
+
+            # Get metrics results from running estimator on filtered dataset
             test_results[ranking_name] = \
                 DataService.test_estimator_on_dataset(
                     estimator=copy.deepcopy(DataRepository.get_estimator()),
-                    features=features,
+                    features=filtered_features,
                     target=target
                 )
 
-            # Get filtered columns
-            test_results[ranking_name]['filtered_columns'] =\
-                Ranking.filter_columns_by_ranks(rank_list=rank_list, feature_columns=features.columns)
+            test_results[ranking_name]['filtered_columns'] = filtered_columns
 
         print(result_dict)
 
