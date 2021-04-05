@@ -21,6 +21,7 @@ export class InMemoryDataStoreService {
   editInitAlgorithm$: Subject<AlgorithmWithIndex> = new Subject<AlgorithmWithIndex>();
   selectedAlgorithmIdx$: Subject<number> = new Subject<number>();
   initializedAlgoListChanged$: Subject<IAlgorithm[]> = new Subject<IAlgorithm[]>();
+  rankingAlgoListChanged$: Subject<string[]> = new Subject<string[]>();
 
   private readonly algorithmList: string[] = [
     'RandomForestClassifier',
@@ -76,6 +77,7 @@ export class InMemoryDataStoreService {
 
   addSelectedRankingMethod(methodName: string): void {
     this.selectedRankingMethods.push(methodName);
+    this.rankingAlgoListChanged$.next(this.selectedRankingMethods);
   }
 
   containsRankingMethodByName(methodName: string): boolean {
@@ -87,6 +89,7 @@ export class InMemoryDataStoreService {
     if (index > -1) {
       this.selectedRankingMethods.splice(index, 1);
     }
+    this.rankingAlgoListChanged$.next(this.selectedRankingMethods);
   }
 
 }

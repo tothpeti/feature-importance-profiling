@@ -64,10 +64,10 @@ class Ranking:
     @classmethod
     def select_ranking_method(cls, method_name, result_dict):
 
-        if method_name == 'Average':
+        if method_name == 'average':
             return Ranking.average_rank(result_dict=result_dict)
 
-        elif method_name == 'Frequency':
+        elif method_name == 'frequency':
             return Ranking.frequency_rank(result_dict=result_dict)
 
     @staticmethod

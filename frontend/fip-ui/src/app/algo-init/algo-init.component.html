@@ -3,7 +3,7 @@
     <app-ranking-form></app-ranking-form>
   </div>
 </div>
-<div class="row">
+<div class="row" style="height: 450px;">
   <div class="col-lg-4 col-md-4">
     <app-algo-init-list></app-algo-init-list>
   </div>
@@ -11,10 +11,12 @@
     <app-algo-init-edit></app-algo-init-edit>
   </div>
 </div>
-<div class="row">
+<div class="row" style="margin-bottom: 15px;">
     <app-algo-init-card></app-algo-init-card>
 </div>
-<div>
-  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Run Profiler</button>
+<div class="row" style="margin-left: 1px;">
+  <button type="submit" class="btn btn-primary"
+          [disabled]="isRankingListEmpty || isAlgorithmListEmpty"
+          (click)="onSubmit()">Run Profiler</button>
 </div>
 

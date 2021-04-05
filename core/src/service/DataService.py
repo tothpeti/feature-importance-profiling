@@ -78,13 +78,14 @@ class DataService:
             test_results[ranking_name]['filtered_columns'] = filtered_columns
 
         print(result_dict)
+        print(test_results)
 
     @classmethod
     def test_estimator_on_dataset(cls, estimator, features, target):
 
         x_train, x_test, y_train, y_test = DataRepository.get_train_test_split(features=features, target=target)
 
-        estimator_cross = cross_validate(estimator=estimator, X=x_train, y=y_train, cv=10, scoring=Metrics.roc_auc_scorer())
+        estimator_cross = cross_validate(estimator=estimator, X=x_train, y=y_train, cv=10, scoring=Metrics.roc_auc_scorer(), return_estimator=True)
 
         estimator_cross_max_auc_index = np.argmax(estimator_cross['test_score'])
         best_estimator = estimator_cross['estimator'][estimator_cross_max_auc_index]

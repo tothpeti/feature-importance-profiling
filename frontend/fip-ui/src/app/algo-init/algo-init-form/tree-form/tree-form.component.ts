@@ -9,7 +9,7 @@ import {ExtraTreesModel} from '../../../shared/model/extra-trees.model';
 @Component({
   selector: 'app-tree-form',
   templateUrl: './tree-form.component.html',
-  styleUrls: ['./tree-form.component.css']
+  styleUrls: ['./tree-form.component.css', '../../algo-init.component.css']
 })
 export class TreeFormComponent implements OnInit {
 
