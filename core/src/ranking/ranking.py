@@ -12,7 +12,7 @@ class Ranking:
 
         for key, value in result_dict.items():
             two_most_common = Counter(value).most_common(2)
-
+            # 6: 4, 4: 2
             if len(two_most_common) >= 2 and two_most_common[0][1] == two_most_common[1][1]:
                 # IF there are two ranking with the same number of occurrences then
                 # get the average of both of the ranking

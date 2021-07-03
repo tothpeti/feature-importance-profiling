@@ -5,6 +5,9 @@ from sklearn.linear_model import LogisticRegression
 
 if __name__ == '__main__':
 
+    # 'D:/Egyetem/MSc/Master_Thesis/datasets/diabetes.csv'
+    # 'D:/Egyetem/MSc/Master_Thesis/datasets/normal.csv'
+
     # Absolute path to file
     path_to_file = 'D:/Egyetem/MSc/Master_Thesis/datasets/bernoulli/1.csv'
 
