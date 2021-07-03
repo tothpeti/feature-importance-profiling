@@ -1,6 +1,10 @@
+import {Button} from '@material-ui/core';
+
 const AlgorithmSelection = () => {
   return (
-      <h1>Select Algorithm</h1>
+      <Button variant="contained" color="secondary">
+        Add Algorithm
+      </Button>
   );
 };
 
