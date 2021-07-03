@@ -1,5 +1,6 @@
 import { Grid } from '@material-ui/core';
 import RankingMethodSelection from './RankingMethodSelection';
+import AlgorithmSelection from './AlgorithmSelection';
 
 const Content = () => {
   return (
@@ -9,7 +10,7 @@ const Content = () => {
         </Grid>
 
         <Grid item>
-          <h1>Algorithms</h1>
+          <AlgorithmSelection />
         </Grid>
 
         <Grid item>
