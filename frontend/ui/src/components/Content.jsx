@@ -1,10 +1,11 @@
 import { Grid } from '@material-ui/core';
+import RankingMethodSelection from './RankingMethodSelection';
 
 const Content = () => {
   return (
       <Grid container direction="column">
         <Grid item>
-          <h1>Feature selection techniques</h1>
+          <RankingMethodSelection />
         </Grid>
 
         <Grid item>
