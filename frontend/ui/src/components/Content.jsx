@@ -5,11 +5,11 @@ import AlgorithmSelection from './AlgorithmSelection';
 const Content = () => {
   return (
       <Grid container direction="column">
-        <Grid item sm={3}>
+        <Grid item>
           <RankingMethodSelection />
         </Grid>
 
-        <Grid item sm={5}>
+        <Grid item>
           <AlgorithmSelection />
         </Grid>
 
