@@ -2,6 +2,7 @@ import {FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
 import {useState} from "react";
 import {makeStyles} from '@material-ui/core/styles';
 import LinearSVCForm from "./forms/LinearSVCForm";
+import MutualInfoForm from "./forms/MutualInfoForm";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -26,7 +27,6 @@ const AlgorithmSelection = () => {
 
   const handleChange = (event) => {
     setSelectedAlgorithm(event.target.value);
-    console.log(selectedAlgorithm)
   }
 
   return (
@@ -43,6 +43,7 @@ const AlgorithmSelection = () => {
           })}
         </Select>
         {selectedAlgorithm === 'linearSVC' ? (<LinearSVCForm />) : (<div/>)}
+        {selectedAlgorithm === 'mutualInfo' ? (<MutualInfoForm />) : (<div/>)}
       </FormControl>
 
   );
