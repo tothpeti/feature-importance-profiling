@@ -1,6 +1,7 @@
 import {FormControl, Select, InputLabel, MenuItem} from '@material-ui/core';
 import {useState} from "react";
 import {makeStyles} from '@material-ui/core/styles';
+import LinearSVCForm from "./forms/LinearSVCForm";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -16,13 +17,16 @@ const AlgorithmSelection = () => {
   const classes = useStyles();
   const [selectedAlgorithm, setSelectedAlgorithm] = useState('');
   const availableMLAlgorithms = [
-    {id: 1, algorithmId: "logisticRegression", fullName: "Logistic Regression"},
-    {id: 2, algorithmId: "randomForestClassifier", fullName: "RandomForestClassifier"},
-    {id: 3, algorithmId: "xgboostClassifier", fullName: "XGBoostClassifier"}
+    {id: 1, algorithmId: "linearSVC", fullName: "Linear SVC"},
+    {id: 2, algorithmId: "mutualInfo", fullName: "Mutual Information"},
+    {id: 3, algorithmId: "extraTreesClassifier", fullName: "ExtraTreesClassifier"},
+    {id: 4, algorithmId: "randomForestClassifier", fullName: "RandomForestClassifier"},
+    {id: 5, algorithmId: "xgboostClassifier", fullName: "XGBoostClassifier"}
   ]
 
   const handleChange = (event) => {
     setSelectedAlgorithm(event.target.value);
+    console.log(selectedAlgorithm)
   }
 
   return (
@@ -38,7 +42,9 @@ const AlgorithmSelection = () => {
             return (<MenuItem id={algorithm.id} value={algorithm.algorithmId} > { algorithm.fullName } </MenuItem>)
           })}
         </Select>
+        {selectedAlgorithm === 'linearSVC' ? (<LinearSVCForm />) : (<div/>)}
       </FormControl>
+
   );
 };
 

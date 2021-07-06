@@ -10,6 +10,8 @@ const Content = () => {
   return (
       <Grid container direction="column">
 
+        {
+        /*
         {algoDetails.map(algo => {
           return (
               <div key={algo.id}>
@@ -22,6 +24,8 @@ const Content = () => {
               </div>
           )
         })}
+        */
+        }
 
         <Grid item>
           <RankingMethodSelection />
