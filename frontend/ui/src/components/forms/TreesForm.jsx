@@ -31,24 +31,28 @@ const TreesForm = ({name}) => {
         id="nEstimatorsId"
         label="n_estimators"
         value={nEstimators}
+        type="number"
         onChange={e => setNEstimators(e.target.value)}
       />
       <TextField
           id="maxDepthId"
           label="max_depth"
           value={maxDepth}
+          type="number"
           onChange={e => setMaxDepth(e.target.value)}
       />
       <TextField
           id="minSamplesSplitId"
           label="min_samples_split"
           value={minSamplesSplit}
+          type="number"
           onChange={e => setMinSamplesSplit(e.target.value)}
       />
       <TextField
           id="minSamplesLeafId"
           label="min_samples_leaf"
           value={minSamplesLeaf}
+          type="number"
           onChange={e => setMinSamplesLeaf(e.target.value)}
       />
     </FormControl>,

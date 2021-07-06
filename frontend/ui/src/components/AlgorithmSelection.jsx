@@ -4,6 +4,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import LinearSVCForm from "./forms/LinearSVCForm";
 import MutualInfoForm from "./forms/MutualInfoForm";
 import TreesForm from "./forms/TreesForm";
+import XGBoostForm from "./forms/XGBoostForm";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -49,6 +50,7 @@ const AlgorithmSelection = () => {
             (<TreesForm name={'randomForestClassifier'} />) : (<div/>)}
         {selectedAlgorithm === 'extraTreesClassifier' ?
             (<TreesForm name={'extraTreesClassifier'} />) : (<div/>)}
+        {selectedAlgorithm === 'xgboostClassifier' ? (<XGBoostForm />) : (<div/>)}
       </FormControl>
 
   );

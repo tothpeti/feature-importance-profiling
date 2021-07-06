@@ -1,4 +1,4 @@
-import {Grid, hexToRgb} from '@material-ui/core';
+import {Grid} from '@material-ui/core';
 import RankingMethodSelection from './RankingMethodSelection';
 import AlgorithmSelection from './AlgorithmSelection';
 import {useContext} from "react";
