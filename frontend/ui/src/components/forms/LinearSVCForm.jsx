@@ -19,11 +19,6 @@ const LinearSVCForm = () => {
   const [penalty, setPenalty] = useState("l1")
   const [tol, setTol] = useState(0.0001)
 
-  const penalties = [
-    {id: 1, name: 'l1'},
-    {id: 2, name: 'l2'}
-  ]
-
   return ([
      <FormControl className={classes.formControl}>
        <TextField

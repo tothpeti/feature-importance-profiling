@@ -3,6 +3,7 @@ import {useState} from "react";
 import {makeStyles} from '@material-ui/core/styles';
 import LinearSVCForm from "./forms/LinearSVCForm";
 import MutualInfoForm from "./forms/MutualInfoForm";
+import TreesForm from "./forms/TreesForm";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -44,6 +45,10 @@ const AlgorithmSelection = () => {
         </Select>
         {selectedAlgorithm === 'linearSVC' ? (<LinearSVCForm />) : (<div/>)}
         {selectedAlgorithm === 'mutualInfo' ? (<MutualInfoForm />) : (<div/>)}
+        {selectedAlgorithm === 'randomForestClassifier' ?
+            (<TreesForm name={'randomForestClassifier'} />) : (<div/>)}
+        {selectedAlgorithm === 'extraTreesClassifier' ?
+            (<TreesForm name={'extraTreesClassifier'} />) : (<div/>)}
       </FormControl>
 
   );
